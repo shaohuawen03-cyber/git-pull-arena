@@ -1,9 +1,9 @@
 {
-    "round":  42,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 42: Windows probe via new ps1 runner dispatch - run machine_probe.py natively, report Windows conda envs",
-    "arena_updated":  "2026-09-17 06:31:34",
-    "local_updated":  "2026-09-17 14:32:43"
+  "round": 43,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 43: Windows probe again - two-phase python discovery (venv sibling + conda roots + PATH)",
+  "arena_updated": "2026-09-17 06:34:00",
+  "local_updated": null
 }
