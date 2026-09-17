@@ -1,6 +1,6 @@
 {
   "schema": "local-loop.gates.v1",
-  "at": "2026-09-17 03:17:14",
+  "at": "2026-09-17 06:31:28",
   "os": "linux",
   "gates": [
     {
@@ -21,7 +21,7 @@
       "why": "an acceptance needle that no file in the worktree contains fails the round on the machine even when every local check passed (round 33)",
       "status": "ok",
       "exit": 0,
-      "detail": "OK: criteria needles all satisfiable here (40 checked, 0 not present yet)"
+      "detail": "OK: criteria needles all satisfiable here (41 checked, 0 not present yet)"
     },
     {
       "id": "payload-drift",

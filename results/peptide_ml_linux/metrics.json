@@ -1,0 +1,28 @@
+{
+  "schema": "peptide-ml.metrics.v1",
+  "demo_data": true,
+  "demo_note": "SYNTHETIC DEMO DATA - functional test only, not scientific",
+  "model": "rf_aac",
+  "model_detail": "RandomForest(n_estimators=200) on AAC(20)+len+charge+KD+EDfrac",
+  "n_total": 400,
+  "n_train": 300,
+  "n_test": 100,
+  "accuracy": 0.97,
+  "precision": 1.0,
+  "recall": 0.7,
+  "f1": 0.8235,
+  "confusion": {
+    "tn": 90,
+    "fp": 0,
+    "fn": 3,
+    "tp": 7
+  },
+  "host": "LAPTOP-R77M5D6M",
+  "python": "/home/w24e/miniconda3/envs/AMPidentifier/bin/python",
+  "python_version": "3.11.15",
+  "numpy": "2.4.0",
+  "pandas": "2.3.3",
+  "sklearn": "1.8.0",
+  "elapsed_s": 1.4,
+  "at": "2026-09-17 10:24:08"
+}

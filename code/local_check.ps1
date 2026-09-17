@@ -448,7 +448,81 @@ foreach ($ct in $comTargets) {
 #    Run in a child process so its exit code is unambiguous and no console
 #    window can flash.
 $pptScript = Join-Path (Get-Location).Path 'code\pptmaster_local.ps1'
-if (Test-Path -LiteralPath $pptScript) {
+# The task's local plane. office-deck (the default recipe) keeps its proven
+# inline path below; any other recipe id in code\loop.json runs through the
+# task-agnostic runner (code\local_loop.py local --os windows) and its
+# receipt is judged the same way local_check.sh judges it (loop-ok +
+# opened=). ASCII-only: no CJK in this file, ever.
+$recipeId = 'office-deck'
+try {
+    $loopCfg = Get-Content -LiteralPath '.\code\loop.json' -Raw -ErrorAction Stop | ConvertFrom-Json
+    if ($loopCfg.recipe) { $recipeId = [string]$loopCfg.recipe }
+} catch { }
+Write-Output ('   .. 4 recipe: ' + $recipeId)
+if ($recipeId -ne 'office-deck') {
+    # find a WORKING Windows python the way check_all.sh does: try each
+    # candidate and prove it runs (a bare Store stub answers Get-Command and
+    # then fails, so only a probe that prints counts).
+    $runPy = ''
+    $runPyArgs = @()
+    foreach ($cand in @('python3', 'python', 'py -3')) {
+        $parts = @($cand -split ' ')
+        $exeName = $parts[0]
+        $extra = @()
+        if ($parts.Count -gt 1) { $extra = $parts[1..($parts.Count - 1)] }
+        $found = Get-Command $exeName -ErrorAction SilentlyContinue | Select-Object -First 1
+        if (-not $found) { continue }
+        try {
+            $probe = (& $found.Source @extra -c 'import sys;print("py-ok")' 2>&1 | Out-String)
+            if (($LASTEXITCODE -eq 0) -and ($probe -match 'py-ok')) {
+                $runPy = [string]$found.Source
+                $runPyArgs = $extra
+                break
+            }
+        } catch { }
+    }
+    if (-not $runPy) {
+        Write-Output '[FAIL] 4a no working python (python3 / python / py -3) - cannot run the recipe'
+        $fail = 1
+    } elseif (-not (Test-Path -LiteralPath '.\code\local_loop.py')) {
+        Write-Output '[FAIL] 4a code\local_loop.py is missing - cannot run the recipe'
+        $fail = 1
+    } else {
+        Write-Output ('   .. 4a runner python: ' + $runPy)
+        $runOut = (& $runPy @runPyArgs 'code\local_loop.py' 'local' '--os' 'windows' 2>&1 | Out-String)
+        $runCode = $LASTEXITCODE
+        if ($runOut) { Write-Output $runOut }
+        if ($runCode -ne 0) {
+            Write-Output ('   FAIL 4a recipe local plane failed (exit ' + $runCode + ')')
+            $fail = 1
+        } else {
+            Write-Output '   OK   4a recipe local plane finished (exit 0)'
+        }
+    }
+    # 4b/4c judge the runner receipt, exactly like local_check.sh does
+    $loopRec = '.\results\status\local_loop_receipt.txt'
+    if (Test-Path -LiteralPath $loopRec) {
+        $rec = [System.IO.File]::ReadAllText((Resolve-Path -LiteralPath $loopRec).Path)
+        if ($rec -match '(?m)^loop-ok') {
+            Write-Output '   OK   4b every declared key matched'
+        } else {
+            Write-Output '   FAIL 4b the receipt says the task did not verify'
+            $fail = 1
+        }
+        $opened = ''
+        if ($rec -match 'opened=([^\s]+)') { $opened = $Matches[1] }
+        if (($opened -eq 'yes') -or ($opened.StartsWith('ok'))) {
+            Write-Output ('   OK   4c a real application opened the file (' + $opened + ')')
+        } elseif (($opened -eq 'na') -or ($opened.StartsWith('skip')) -or ($opened -eq 'unknown') -or (-not $opened)) {
+            Write-Output ('   WARN 4c no application open test on this machine (' + $opened + ') - structural checks stand')
+        } else {
+            Write-Output ('   FAIL 4c the file could not be opened by a real application (' + $opened + ')')
+            $fail = 1
+        }
+    } else {
+        Write-Output '   WARN 4b/4c no local_loop_receipt.txt (the local plane did not run)'
+    }
+} elseif (Test-Path -LiteralPath $pptScript) {
     Write-Output '== ppt-master: local install + local deck generation'
     $pptOut = Join-Path $env:TEMP ('pptmaster_out_' + (Get-Date -Format 'HHmmss') + '.log')
     $pptErr = Join-Path $env:TEMP ('pptmaster_err_' + (Get-Date -Format 'HHmmss') + '.log')
