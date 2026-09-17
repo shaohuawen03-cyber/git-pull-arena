@@ -1,9 +1,9 @@
 {
-  "round": 40,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-09-17 02:24:21",
-  "local_updated": "2026-09-17 10:24:08"
+  "round": 41,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 41: Windows native office-deck - full local_check.ps1 (gates + 3a-3h + section4 ppt-master build + true PowerPoint open). WSL watcher parked; this round is for Windows.",
+  "arena_updated": "2026-09-17 02:38:08",
+  "local_updated": null
 }
