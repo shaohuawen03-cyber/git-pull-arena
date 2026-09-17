@@ -460,29 +460,62 @@ try {
 } catch { }
 Write-Output ('   .. 4 recipe: ' + $recipeId)
 if ($recipeId -ne 'office-deck') {
-    # find a WORKING Windows python the way check_all.sh does: try each
-    # candidate and prove it runs (a bare Store stub answers Get-Command and
-    # then fails, so only a probe that prints counts).
+    # Phase 1: absolute paths (probed, never assumed). Conda does not put
+    # itself on PATH by default and the scheduled task may carry a minimal
+    # PATH anyway (round 42: python3 / python / py -3 all unresolvable), so
+    # ask the well-known roots first - starting with the ppt-master venv
+    # that lives next to this repo and provably runs (round 41: venv py
+    # 3.11.9). The runner only needs the stdlib (local_loop + probe); the
+    # ML interpreter is discovered separately by the probe/wrapper.
+    $absCands = @()
+    $repoParent = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
+    $absCands += (Join-Path $repoParent 'ppt-master\.venv\Scripts\python.exe')
+    if ($env:USERPROFILE) {
+        foreach ($d in @('miniconda3', 'anaconda3', 'miniforge3', 'mambaforge')) {
+            $absCands += (Join-Path $env:USERPROFILE ($d + '\python.exe'))
+        }
+    }
+    foreach ($p in @('C:\miniconda3\python.exe', 'C:\anaconda3\python.exe', 'C:\tools\miniconda3\python.exe')) {
+        $absCands += $p
+    }
     $runPy = ''
     $runPyArgs = @()
-    foreach ($cand in @('python3', 'python', 'py -3')) {
-        $parts = @($cand -split ' ')
-        $exeName = $parts[0]
-        $extra = @()
-        if ($parts.Count -gt 1) { $extra = $parts[1..($parts.Count - 1)] }
-        $found = Get-Command $exeName -ErrorAction SilentlyContinue | Select-Object -First 1
-        if (-not $found) { continue }
+    $tried = 0
+    foreach ($cand in $absCands) {
+        if (-not (Test-Path -LiteralPath $cand)) { continue }
+        $tried += 1
         try {
-            $probe = (& $found.Source @extra -c 'import sys;print("py-ok")' 2>&1 | Out-String)
+            $probe = (& $cand -c 'import sys;print("py-ok")' 2>&1 | Out-String)
             if (($LASTEXITCODE -eq 0) -and ($probe -match 'py-ok')) {
-                $runPy = [string]$found.Source
-                $runPyArgs = $extra
+                $runPy = [string]$cand
                 break
             }
         } catch { }
     }
+    # Phase 2: PATH names, each proved by execution (a bare Store stub
+    # answers Get-Command and then fails, so only a probe that prints
+    # counts).
     if (-not $runPy) {
-        Write-Output '[FAIL] 4a no working python (python3 / python / py -3) - cannot run the recipe'
+        foreach ($cand in @('python3', 'python', 'py -3')) {
+            $parts = @($cand -split ' ')
+            $exeName = $parts[0]
+            $extra = @()
+            if ($parts.Count -gt 1) { $extra = $parts[1..($parts.Count - 1)] }
+            $found = Get-Command $exeName -ErrorAction SilentlyContinue | Select-Object -First 1
+            if (-not $found) { continue }
+            $tried += 1
+            try {
+                $probe = (& $found.Source @extra -c 'import sys;print("py-ok")' 2>&1 | Out-String)
+                if (($LASTEXITCODE -eq 0) -and ($probe -match 'py-ok')) {
+                    $runPy = [string]$found.Source
+                    $runPyArgs = $extra
+                    break
+                }
+            } catch { }
+        }
+    }
+    if (-not $runPy) {
+        Write-Output ('[FAIL] 4a no working python (' + $tried + ' candidate(s) tried: ppt-master venv sibling, conda roots, python3 / python / py -3) - cannot run the recipe')
         $fail = 1
     } elseif (-not (Test-Path -LiteralPath '.\code\local_loop.py')) {
         Write-Output '[FAIL] 4a code\local_loop.py is missing - cannot run the recipe'
