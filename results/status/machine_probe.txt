@@ -1,0 +1,5 @@
+machine probe on e2b.local (linux)
+conda: NOT FOUND
+base : -
+envs : 0, pypi: True, cpu: 2, disk free: 20.7 GB
+ml_ready=no best=none  (needs: numpy,pandas,sklearn)

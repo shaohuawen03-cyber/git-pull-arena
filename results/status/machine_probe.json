@@ -1,0 +1,23 @@
+{
+  "schema": "machine-probe.v1",
+  "host": "e2b.local",
+  "platform": "linux",
+  "runner_python": "/usr/bin/python3",
+  "conda_exe": null,
+  "conda_base": null,
+  "envs": [],
+  "pypi_reachable": true,
+  "cpu_count": 2,
+  "disk_free_gb": 20.7,
+  "runner": {
+    "python": "3.11.2",
+    "error": null,
+    "numpy": null,
+    "pandas": null,
+    "sklearn": null,
+    "scipy": null,
+    "torch": null,
+    "xgboost": null,
+    "lightgbm": null
+  }
+}

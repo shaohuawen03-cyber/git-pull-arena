@@ -1,24 +1,12 @@
 {
   "schema": "local-loop.plan.v1",
-  "at": "2026-09-17 02:12:34",
+  "at": "2026-09-17 02:19:23",
   "repo": "/home/user/git-pull-arena",
-  "recipe": "office-deck",
-  "title": "PPT Master deck authored here, built and opened on the machine",
+  "recipe": "peptide-probe",
+  "title": "Recon: report this machine's conda envs and ML packages",
   "target_os": "linux",
-  "needs": [
-    "python-3.10+",
-    "office-com-or-libreoffice"
-  ],
+  "needs": [],
   "steps": [
-    {
-      "plane": "sandbox",
-      "id": "pages",
-      "run": "/usr/bin/python3 code/make_deck_umami.py --out build/pages",
-      "produces": [
-        "build/pages/*.svg"
-      ],
-      "why": "author the deck's pages from THIS repo's numbers - fast, no install, catches layout bugs before a round is spent"
-    },
     {
       "plane": "sandbox",
       "id": "gates",
@@ -28,25 +16,22 @@
     },
     {
       "plane": "local",
-      "id": "install-and-build-deck",
-      "run": "/usr/bin/bash code/pptmaster_local.sh --repo /home/user/git-pull-arena --root /home/user",
+      "id": "probe-machine",
+      "run": "/usr/bin/python3 code/machine_probe.py",
       "produces": [],
-      "why": "the whole local plane on Linux/macOS in one step: code/pptmaster_local.sh finds a python 3.10+, clones ppt-master if it is missing, builds the venv + core deps, runs the pipeline (pages authored here -> svg_quality_checker -> svg_to_pptx -> structural re-check -> pptx_delivery_check) and proves a real application can open the file with LibreOffice headless; the receipt it writes is what this runner then asserts"
+      "why": "stdlib-only recon: conda locations (cron PATH is minimal, so well-known paths are tried explicitly), env list, per-env ML import table, pypi reachability. Writes machine_probe.json/txt + probe_receipt.txt."
     }
   ],
   "receipt": {
-    "file": "results/status/pptmaster_local.txt",
+    "file": "results/status/probe_receipt.txt",
     "keys": {
-      "deck_slides": "12",
-      "checker_blocking": "0",
-      "markers": "ok"
+      "probe": "done"
     },
     "evidence": [
-      "results/umami/DECK_*.pptx",
-      "results/umami/pptmaster_local_quality.json",
-      "results/umami/svg/*.svg"
+      "results/status/machine_probe.json",
+      "results/status/machine_probe.txt"
     ]
   },
   "skip": "",
-  "note": "The default test task of this repo (docx/pptx + a native pptx deck). The task itself is NOT part of the runner: copy this file, change the steps, and the same loop drives a different repo's task. Which deck (generator/project/output) comes from code/pptmaster_deck.json."
+  "note": "Session 01a0ad15 round 39: BEFORE running the peptide ML task, find out what the machine has (conda env list + per-env numpy/pandas/sklearn/scipy/torch/xgboost/lightgbm). The probe never fails for a missing package - it reports. The agent reads results/status/machine_probe.json and designs the task round from facts, reusing an existing env when one qualifies."
 }

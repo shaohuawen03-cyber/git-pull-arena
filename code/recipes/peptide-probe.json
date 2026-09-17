@@ -1,0 +1,56 @@
+{
+  "schema": "local-loop.recipe.v1",
+  "id": "peptide-probe",
+  "title": "Recon: report this machine's conda envs and ML packages",
+  "version": 1,
+  "note": "Session 01a0ad15 round 39: BEFORE running the peptide ML task, find out what the machine has (conda env list + per-env numpy/pandas/sklearn/scipy/torch/xgboost/lightgbm). The probe never fails for a missing package - it reports. The agent reads results/status/machine_probe.json and designs the task round from facts, reusing an existing env when one qualifies.",
+  "needs": [],
+  "sandbox": {
+    "steps": [
+      {
+        "id": "gates",
+        "why": "the repo's own gate list (code/gates.json) - the same questions check_all.sh asks",
+        "run": ["{python}", "code/gates.py"],
+        "timeout": 1800
+      }
+    ]
+  },
+  "local": {
+    "steps": {
+      "linux": [
+        {
+          "id": "probe-machine",
+          "why": "stdlib-only recon: conda locations (cron PATH is minimal, so well-known paths are tried explicitly), env list, per-env ML import table, pypi reachability. Writes machine_probe.json/txt + probe_receipt.txt.",
+          "run": ["{python}", "code/machine_probe.py"],
+          "timeout": 600
+        }
+      ],
+      "macos": [
+        {
+          "id": "probe-machine",
+          "why": "same probe - it is OS-agnostic",
+          "run": ["{python}", "code/machine_probe.py"],
+          "timeout": 600
+        }
+      ],
+      "windows": [
+        {
+          "id": "probe-machine",
+          "why": "same probe - it is OS-agnostic",
+          "run": ["{python}", "code/machine_probe.py"],
+          "timeout": 600
+        }
+      ]
+    },
+    "receipt": {
+      "file": "results/status/probe_receipt.txt",
+      "keys": {
+        "probe": "done"
+      }
+    }
+  },
+  "evidence": [
+    "results/status/machine_probe.json",
+    "results/status/machine_probe.txt"
+  ]
+}
