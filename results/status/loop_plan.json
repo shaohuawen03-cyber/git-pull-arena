@@ -1,7 +1,7 @@
 {
   "schema": "local-loop.plan.v1",
-  "at": "2026-09-17 10:12:04",
-  "repo": "/home/w24e/projects/git-pull-arena-01a0ad15",
+  "at": "2026-09-17 02:10:12",
+  "repo": "/home/user/git-pull-arena",
   "recipe": "bridge-check",
   "title": "Bridge verification: prove the machine answers rounds, no local build",
   "target_os": "linux",
