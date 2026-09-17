@@ -1,10 +1,10 @@
 {
   "schema": "local-loop.plan.v1",
-  "at": "2026-09-17 02:38:06",
-  "repo": "/home/user/git-pull-arena",
+  "at": "2026-09-17 11:13:57",
+  "repo": "E:\\0github\\git-sync\\git-pull-arena-01a0ad15",
   "recipe": "office-deck",
   "title": "PPT Master deck authored here, built and opened on the machine",
-  "target_os": "linux",
+  "target_os": "windows",
   "needs": [
     "python-3.10+",
     "office-com-or-libreoffice"
@@ -13,7 +13,7 @@
     {
       "plane": "sandbox",
       "id": "pages",
-      "run": "/usr/bin/python3 code/make_deck_umami.py --out build/pages",
+      "run": "E:\\spider\\python.exe code/make_deck_umami.py --out build/pages",
       "produces": [
         "build/pages/*.svg"
       ],
@@ -22,16 +22,16 @@
     {
       "plane": "sandbox",
       "id": "gates",
-      "run": "/usr/bin/python3 code/gates.py",
+      "run": "E:\\spider\\python.exe code/gates.py",
       "produces": [],
       "why": "the repo's own gate list (code/gates.json) - the same questions check_all.sh asks"
     },
     {
       "plane": "local",
       "id": "install-and-build-deck",
-      "run": "/usr/bin/bash code/pptmaster_local.sh --repo /home/user/git-pull-arena --root /home/user",
+      "run": "code/pptmaster_local.ps1",
       "produces": [],
-      "why": "the whole local plane on Linux/macOS in one step: code/pptmaster_local.sh finds a python 3.10+, clones ppt-master if it is missing, builds the venv + core deps, runs the pipeline (pages authored here -> svg_quality_checker -> svg_to_pptx -> structural re-check -> pptx_delivery_check) and proves a real application can open the file with LibreOffice headless; the receipt it writes is what this runner then asserts"
+      "why": "the same job on Windows: code/pptmaster_local.ps1 resolves a REAL powershell.exe, finds a python 3.10+ (registry/PATH/conda/hardware report), clones + venvs ppt-master, builds the deck and then code/local_check.ps1 4c opens it in the real PowerPoint"
     }
   ],
   "receipt": {

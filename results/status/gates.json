@@ -1,13 +1,13 @@
 {
   "schema": "local-loop.gates.v1",
-  "at": "2026-09-17 02:38:06",
-  "os": "linux",
+  "at": "2026-09-17 11:13:57",
+  "os": "windows",
   "gates": [
     {
       "id": "deck-layout",
       "severity": "block",
       "plane": "sandbox",
-      "run": "/usr/bin/python3 code/deck_layout_selftest.py",
+      "run": "E:\\spider\\python.exe code/deck_layout_selftest.py",
       "why": "the deck pages read their numbers out of the repo, so one input can build a page whose module boxes overlap - the machine's checker rejects that page and the whole round fails (round 28)",
       "status": "ok",
       "exit": 0,
@@ -17,7 +17,7 @@
       "id": "criteria-needles",
       "severity": "block",
       "plane": "sandbox",
-      "run": "/usr/bin/python3 code/check_criteria_needles.py",
+      "run": "E:\\spider\\python.exe code/check_criteria_needles.py",
       "why": "an acceptance needle that no file in the worktree contains fails the round on the machine even when every local check passed (round 33)",
       "status": "ok",
       "exit": 0,
@@ -27,7 +27,7 @@
       "id": "payload-drift",
       "severity": "block",
       "plane": "sandbox",
-      "run": "/usr/bin/python3 skills/office-loop/tools/check_payload.py",
+      "run": "E:\\spider\\python.exe skills/office-loop/tools/check_payload.py",
       "why": "the installable skill carries the loop's code inside itself; if that copy drifts, another session installs an old loop",
       "status": "ok",
       "exit": 0,
@@ -37,11 +37,11 @@
       "id": "recipes-valid",
       "severity": "block",
       "plane": "sandbox",
-      "run": "/usr/bin/python3 code/local_loop.py plan",
+      "run": "E:\\spider\\python.exe code/local_loop.py plan",
       "why": "the task recipe is what tells the machine what to build and verify - a malformed recipe must fail here, not mid-round",
       "status": "ok",
       "exit": 0,
-      "detail": "LOOP: plan    : results/status/loop_plan.json"
+      "detail": "LOOP: plan    : results\\status\\loop_plan.json"
     },
     {
       "id": "machine-task",
