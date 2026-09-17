@@ -133,7 +133,8 @@ def main():
         fh.write('\n')
 
     report = [
-        'peptide ML prediction on %s (SYNTHETIC DEMO DATA - functional test)' % platform.node(),
+        'peptide ML prediction on %s (%s) (SYNTHETIC DEMO DATA - functional test)'
+        % (platform.node(), sys.platform),
         'env python : %s (py %s, numpy %s, pandas %s, sklearn %s)'
         % (sys.executable, metrics['python_version'], metrics['numpy'],
            metrics['pandas'], metrics['sklearn']),

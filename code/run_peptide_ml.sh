@@ -46,6 +46,15 @@ for root in "$HOME/miniconda3" "$HOME/anaconda3" "$HOME/miniforge3" \
         grep -qxF "$py" "$CANDS_FILE" 2>/dev/null || echo "$py" >> "$CANDS_FILE"
     done
 done
+# --- 2b. windows layout (git-bash): <root>/python.exe, <root>/envs/*/python.exe ---
+for root in "$HOME/miniconda3" "$HOME/anaconda3" "$HOME/miniforge3" \
+            "$HOME/mambaforge" /c/miniconda3 /c/anaconda3 /c/tools/miniconda3; do
+    [ -d "$root" ] || continue
+    for py in "$root/python.exe" "$root/envs/"*/python.exe; do
+        [ -f "$py" ] || continue
+        grep -qxF "$py" "$CANDS_FILE" 2>/dev/null || echo "$py" >> "$CANDS_FILE"
+    done
+done
 for cmd in python3 python; do
     hit="$(command -v "$cmd" 2>/dev/null || true)"
     [ -n "$hit" ] || continue

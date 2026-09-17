@@ -210,6 +210,15 @@ def main():
     with open(JSON_OUT, 'w', encoding='utf-8') as fh:
         json.dump(report, fh, ensure_ascii=False, indent=2)
         fh.write('\n')
+    # per-OS copy: this laptop has TWO loops (WSL + Windows) on ONE branch, and
+    # machine_probe.json is latest-wins - without this the Windows round would
+    # bury the WSL report (round 39 Ubuntu data survived only via git history).
+    tag = {'win32': 'windows', 'cygwin': 'windows', 'darwin': 'macos'}.get(
+        sys.platform, 'linux')
+    per_os_json = os.path.join(STATUS_DIR, 'machine_probe_%s.json' % tag)
+    with open(per_os_json, 'w', encoding='utf-8') as fh:
+        json.dump(report, fh, ensure_ascii=False, indent=2)
+        fh.write('\n')
 
     lines = ['machine probe on %s (%s)' % (report['host'], sys.platform),
              'conda: %s' % (report['conda_exe'] or 'NOT FOUND'),
