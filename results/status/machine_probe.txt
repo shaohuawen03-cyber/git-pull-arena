@@ -1,18 +1,27 @@
-machine probe on LAPTOP-R77M5D6M (linux)
-conda: /home/w24e/miniconda3/bin/conda
-base : /home/w24e/miniconda3
-envs : 13, pypi: True, cpu: 6, disk free: 783.0 GB
-  - base (py 3.14.6): numpy=2.5.1 pandas=3.0.5 sklearn=- scipy=- torch=- xgboost=- lightgbm=-
-  - AMPidentifier (py 3.11.15): numpy=2.4.0 pandas=2.3.3 sklearn=1.8.0 scipy=1.16.3 torch=- xgboost=3.2.0 lightgbm=4.6.0  BEST
-  - HMD-AMP (py 3.8.20): numpy=1.24.4 pandas=1.2.0 sklearn=1.3.0 scipy=1.10.1 torch=2.4.1+cu121 xgboost=- lightgbm=-
-  - NTxPred2 (py 3.10.16): numpy=1.26.4 pandas=1.5.3 sklearn=1.5.2 scipy=1.15.3 torch=- xgboost=3.2.0 lightgbm=4.7.0
-  - amp-esm (py 3.11.14): numpy=2.0.1 pandas=3.0.5 sklearn=1.9.0 scipy=1.17.1 torch=2.5.1 xgboost=- lightgbm=-
-  - amppre (py 3.11.15): numpy=2.4.6 pandas=3.0.3 sklearn=1.9.0 scipy=1.17.1 torch=2.11.0+cu128 xgboost=- lightgbm=-
-  - bioskills (py 3.11.15): numpy=2.4.6 pandas=2.3.3 sklearn=1.9.0 scipy=1.17.1 torch=- xgboost=- lightgbm=-
-  - bitoxnet (py 3.12.0): numpy=2.1.3 pandas=2.2.3 sklearn=1.6.1 scipy=1.18.0 torch=2.5.1 xgboost=- lightgbm=-
-  - camps-tf114 (py ?): numpy=- pandas=- sklearn=- scipy=- torch=- xgboost=- lightgbm=-
-  - docking (py 3.10.20): numpy=2.2.6 pandas=2.3.3 sklearn=- scipy=1.15.2 torch=- xgboost=- lightgbm=-
-  - ilearnplus (py 3.8.6): numpy=1.18.5 pandas=1.0.5 sklearn=0.23.1 scipy=1.5.0 torch=1.10.1 xgboost=1.0.2 lightgbm=2.3.1
-  - orange3 (py 3.11.15): numpy=2.2.6 pandas=2.3.3 sklearn=1.9.0 scipy=1.17.1 torch=- xgboost=3.2.0 lightgbm=-
-  - py36 (py 3.6.15): numpy=1.19.5 pandas=1.1.5 sklearn=0.24.2 scipy=1.5.4 torch=1.10.1+cu113 xgboost=- lightgbm=-
-ml_ready=yes best=AMPidentifier  (needs: numpy,pandas,sklearn)
+machine probe on LAPTOP-R77M5D6M (win32)
+conda: E:\spider\Library\bin\conda.BAT
+base : E:\spider
+envs : 22, pypi: True, cpu: 8, disk free: 197.7 GB
+  - Pymol (py 3.10.15): numpy=1.26.4 pandas=- sklearn=- scipy=- torch=- xgboost=- lightgbm=-
+  - base (py 3.11.9): numpy=2.3.0 pandas=2.2.3 sklearn=- scipy=1.16.1 torch=- xgboost=- lightgbm=-
+  - NTxPred2 (py 3.10.7): numpy=1.25.2 pandas=1.5.3 sklearn=1.5.2 scipy=1.15.3 torch=2.13.0+cpu xgboost=- lightgbm=-  BEST
+  - cnki-review (py 3.11.15): numpy=- pandas=- sklearn=- scipy=- torch=- xgboost=- lightgbm=-
+  - lark (py 3.11.15): numpy=- pandas=- sklearn=- scipy=- torch=- xgboost=- lightgbm=-
+  - lmab (py 3.12.13): numpy=- pandas=- sklearn=- scipy=- torch=- xgboost=- lightgbm=-
+  - orange3 (py 3.12.13): numpy=- pandas=- sklearn=- scipy=- torch=- xgboost=- lightgbm=-
+  - 1 (py ?): numpy=- pandas=- sklearn=- scipy=- torch=- xgboost=- lightgbm=-
+  - DIP (py 3.9.21): numpy=1.26.4 pandas=2.2.3 sklearn=1.6.1 scipy=1.13.1 torch=- xgboost=- lightgbm=-
+  - HeroMDanalysis (py ?): numpy=- pandas=- sklearn=- scipy=- torch=- xgboost=- lightgbm=-
+  - MMPBSA (py 3.10.17): numpy=1.26.4 pandas=- sklearn=- scipy=- torch=- xgboost=- lightgbm=-
+  - blast (py ?): numpy=- pandas=- sklearn=- scipy=- torch=- xgboost=- lightgbm=-
+  - docking (py 3.9.23): numpy=1.24.4 pandas=2.3.1 sklearn=- scipy=1.13.1 torch=- xgboost=- lightgbm=-
+  - gmx_copilot (py 3.10.17): numpy=- pandas=- sklearn=- scipy=- torch=- xgboost=- lightgbm=-
+  - gmx_mmpbsa (py 3.9.22): numpy=- pandas=- sklearn=- scipy=- torch=- xgboost=- lightgbm=-
+  - lark-f (py 3.12.13): numpy=- pandas=- sklearn=- scipy=- torch=- xgboost=- lightgbm=-
+  - mcp_pymol (py 3.11.15): numpy=2.4.6 pandas=- sklearn=- scipy=- torch=- xgboost=- lightgbm=-
+  - meta-analysis (py 3.11.15): numpy=2.4.6 pandas=3.0.5 sklearn=1.9.0 scipy=1.17.1 torch=- xgboost=- lightgbm=-
+  - ncbi_datasets (py ?): numpy=- pandas=- sklearn=- scipy=- torch=- xgboost=- lightgbm=-
+  - spyder-runtime (py 3.11.11): numpy=2.2.2 pandas=2.2.3 sklearn=- scipy=1.15.1 torch=- xgboost=- lightgbm=-
+  - .conda (py 3.12.9): numpy=- pandas=- sklearn=- scipy=- torch=- xgboost=- lightgbm=-
+  - .conda (py 3.11.11): numpy=- pandas=- sklearn=- scipy=- torch=- xgboost=- lightgbm=-
+ml_ready=yes best=NTxPred2  (needs: numpy,pandas,sklearn)

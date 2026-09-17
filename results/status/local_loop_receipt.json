@@ -1,39 +1,29 @@
 {
   "schema": "local-loop.receipt.v1",
-  "at": "2026-09-17 10:24:08",
-  "recipe": "peptide-ml",
-  "os": "linux",
+  "at": "2026-09-17 14:45:59",
+  "recipe": "peptide-probe",
+  "os": "windows",
   "host": "LAPTOP-R77M5D6M",
   "ok": true,
   "checks": {
-    "predictions": {
-      "want": "written",
-      "got": "written",
-      "ok": true
-    },
-    "model": {
-      "want": "rf_aac",
-      "got": "rf_aac",
+    "probe": {
+      "want": "done",
+      "got": "done",
       "ok": true
     }
   },
   "values": {
-    "predictions": "written",
-    "model": "rf_aac",
-    "accuracy": "0.9700",
-    "n_test": "100",
-    "env": "AMPidentifier"
+    "probe": "done",
+    "envs": "22",
+    "ml_ready": "yes",
+    "best": "NTxPred2"
   },
   "materials": {
-    "results/peptide_ml/*.csv": [
-      "results/peptide_ml/predictions.csv"
+    "results/status/machine_probe.json": [
+      "results\\status\\machine_probe.json"
     ],
-    "results/peptide_ml/*.json": [
-      "results/peptide_ml/metrics.json"
-    ],
-    "results/peptide_ml/*.txt": [
-      "results/peptide_ml/peptide_receipt.txt",
-      "results/peptide_ml/run_report.txt"
+    "results/status/machine_probe.txt": [
+      "results\\status\\machine_probe.txt"
     ]
   },
   "opened": ""
