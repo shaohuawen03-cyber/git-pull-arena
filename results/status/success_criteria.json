@@ -78,7 +78,7 @@
   ],
   "require_contains": {
     "skills/git-sync/VERSION": "2.8.1",
-    "skills/git-sync/sync.config.json": "arena/01a0aa00-git-pull-arena",
+    "skills/git-sync/sync.config.json": "arena/01a0ad15-git-pull-arena",
     "01a0a821.md": "arena/01a0aa00-git-pull-arena",
     "skills/git-sync/templates/one-sentence.md": "agent-handoff.sh",
     "skills/git-sync/scripts/agent-install.sh": "refusing to downgrade",
