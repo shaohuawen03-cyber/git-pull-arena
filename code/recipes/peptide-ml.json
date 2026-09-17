@@ -1,0 +1,58 @@
+{
+  "schema": "local-loop.recipe.v1",
+  "id": "peptide-ml",
+  "title": "Peptide ML prediction on the machine's own conda env",
+  "version": 1,
+  "note": "Session 01a0ad15 round 40: the user asked for a peptide ML prediction using their local conda envs (round 39 probe: 13 envs, ml_ready=yes, best=AMPidentifier). The wrapper re-discovers a qualifying interpreter at runtime (no hard-coded env, no install). Training data is SYNTHETIC DEMO (seeded, known rule) - a functional test; replace build_dataset() with a real CSV reader for real data.",
+  "needs": ["python-3.9+", "conda env with numpy+pandas+sklearn"],
+  "sandbox": {
+    "steps": [
+      {
+        "id": "gates",
+        "why": "the repo's own gate list (code/gates.json) - the same questions check_all.sh asks",
+        "run": ["{python}", "code/gates.py"],
+        "timeout": 1800
+      }
+    ]
+  },
+  "local": {
+    "steps": {
+      "linux": [
+        {
+          "id": "peptide-ml-train",
+          "why": "discover the machine's ML python (probe report + fresh scan, first with numpy/pandas/sklearn wins) and run the umami-peptide RandomForest: 300 train / 100 test, metrics + predictions.csv + self-assert accuracy>=0.80",
+          "run": ["{bash}", "code/run_peptide_ml.sh"],
+          "timeout": 1800
+        }
+      ],
+      "macos": [
+        {
+          "id": "peptide-ml-train",
+          "why": "same wrapper - it is OS-agnostic",
+          "run": ["{bash}", "code/run_peptide_ml.sh"],
+          "timeout": 1800
+        }
+      ],
+      "windows": [
+        {
+          "id": "peptide-ml-train",
+          "why": "same wrapper under git-bash (conda env pythons are found via the probe report first)",
+          "run": ["{bash}", "code/run_peptide_ml.sh"],
+          "timeout": 1800
+        }
+      ]
+    },
+    "receipt": {
+      "file": "results/peptide_ml/peptide_receipt.txt",
+      "keys": {
+        "predictions": "written",
+        "model": "rf_aac"
+      }
+    }
+  },
+  "evidence": [
+    "results/peptide_ml/*.csv",
+    "results/peptide_ml/*.json",
+    "results/peptide_ml/*.txt"
+  ]
+}

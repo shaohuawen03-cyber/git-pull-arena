@@ -1,5 +1,5 @@
 {
   "schema": "local-loop.config.v1",
-  "recipe": "peptide-probe",
+  "recipe": "peptide-ml",
   "note": "The recipe this repo's loop runs. The task varies per repo: point this at another file in code/recipes/ and the same runner drives it."
 }

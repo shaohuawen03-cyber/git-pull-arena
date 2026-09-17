@@ -174,9 +174,15 @@ else
   # evidence and the decks. results/status/success_criteria.json and the agent's
   # own docs are ours, and restoring those would silently throw away the
   # acceptance criteria this commit exists to keep (round 34).
+  # Round 39 added the probe + receipt + task-evidence patterns: the accept
+  # buried the machine's LAPTOP probe report under a stale sandbox copy because
+  # machine_probe.* was not listed (2912aaa had the truth, a31602f reverted it).
+  # Rule: every NEW evidence path a recipe's local plane writes must be added
+  # here AND in code/pull_machine_evidence.sh, or accept will clobber it.
   for pat in 'results/status/check_r*.txt' 'results/status/pptmaster_local*' \
              'results/status/svg/*' 'results/*/pptmaster_local*' 'results/*/svg/*' \
-             'results/*/DECK_*.pptx'; do
+             'results/*/DECK_*.pptx' 'results/status/machine_probe.*' \
+             'results/status/*_receipt.*' 'results/peptide_ml/*'; do
     for f in $pat; do
       [ -f "$f" ] || continue
       if git cat-file -e "$ORIGIN:$f" 2>/dev/null; then

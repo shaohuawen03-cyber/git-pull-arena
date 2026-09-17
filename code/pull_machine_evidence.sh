@@ -44,10 +44,16 @@ fi
 # checker evidence, the page sources and the finished decks. Everything else
 # under results/ is the agent's (above all results/status/success_criteria.json,
 # which the agent edits and the machine only reads) and is left alone.
+# Round 39: the probe report + all *_receipt.* + the peptide task dir joined the
+# list (accept had buried the machine's LAPTOP probe under a stale sandbox copy).
+# Rule: every NEW evidence path a recipe's local plane writes must be added here
+# AND in skills/git-sync/scripts/agent-check.sh (--accept), or accept/sync will
+# clobber it with the worktree's stale copy.
 restored=0
 for pat in 'results/status/check_r*.txt' 'results/status/pptmaster_local*' \
            'results/status/svg/*' 'results/*/pptmaster_local*' 'results/*/svg/*' \
-           'results/*/DECK_*.pptx'; do
+           'results/*/DECK_*.pptx' 'results/status/machine_probe.*' \
+           'results/status/*_receipt.*' 'results/peptide_ml/*'; do
     for f in $pat; do
         [ -f "$f" ] || continue
         if git cat-file -e "$ORIGIN:$f" 2>/dev/null; then
