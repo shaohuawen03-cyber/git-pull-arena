@@ -1,9 +1,9 @@
 {
-    "round":  45,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 45: forensics - full python tracebacks, pyvenv.cfg, E: layout; also clears PYTHONHOME/PYTHONPATH poisoning",
-    "arena_updated":  "2026-09-17 06:40:16",
-    "local_updated":  "2026-09-17 14:41:48"
+  "round": 46,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 46: Windows probe with quote-fixed discovery + E:/spider conda root",
+  "arena_updated": "2026-09-17 06:42:59",
+  "local_updated": null
 }
