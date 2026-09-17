@@ -460,6 +460,17 @@ try {
 } catch { }
 Write-Output ('   .. 4 recipe: ' + $recipeId)
 if ($recipeId -ne 'office-deck') {
+    # Round-45 forensics first: print the python-shaping env vars, then
+    # REMOVE poisoning for this branch (a bogus global PYTHONHOME breaks
+    # every interpreter the same way; the defaults are unset, so clearing
+    # them can only restore the stock behavior - and it does not touch the
+    # office-deck path, which lives in the elseif below).
+    foreach ($v in @('PYTHONHOME', 'PYTHONPATH', 'CONDA_EXE', 'CONDA_PREFIX', 'CONDA_DEFAULT_ENV')) {
+        $val = [Environment]::GetEnvironmentVariable($v)
+        if ($val) { Write-Output ('   .. env ' + $v + '=' + $val) } else { Write-Output ('   .. env ' + $v + '=<unset>') }
+    }
+    $env:PYTHONHOME = $null
+    $env:PYTHONPATH = $null
     # Two-phase python discovery with per-candidate diagnostics (round 44:
     # round 43 tried 3 candidates and ALL failed the probe, so print what
     # each one said instead of guessing). Phase 1: absolute paths, starting
@@ -496,7 +507,7 @@ if ($recipeId -ne 'office-deck') {
         try {
             $probe = (& $cand -c 'import sys;print("py-ok")' 2>&1 | Out-String)
             $code = $LASTEXITCODE
-            if ($probe) { $snippet = ([string]$probe).Trim().Substring(0, [Math]::Min(120, ([string]$probe).Trim().Length)) }
+            if ($probe) { $snippet = ([string]$probe).Trim(); if ($snippet.Length -gt 300) { $snippet = $snippet.Substring($snippet.Length - 300) } }
             if (($code -eq 0) -and ($probe -match 'py-ok')) {
                 $runPy = [string]$cand
                 Write-Output ('   .. tried(abs,WINNER) ' + $cand)
@@ -523,10 +534,10 @@ if ($recipeId -ne 'office-deck') {
             $snippet = ''
             try {
                 $probe = (& $found.Source @extra -c 'import sys;print("py-ok")' 2>&1 | Out-String)
-                $code = $LASTEXITCODE
-                if ($probe) { $snippet = ([string]$probe).Trim().Substring(0, [Math]::Min(120, ([string]$probe).Trim().Length)) }
-                if (($code -eq 0) -and ($probe -match 'py-ok')) {
-                    $runPy = [string]$found.Source
+            $code = $LASTEXITCODE
+            if ($probe) { $snippet = ([string]$probe).Trim(); if ($snippet.Length -gt 300) { $snippet = $snippet.Substring($snippet.Length - 300) } }
+            if (($code -eq 0) -and ($probe -match 'py-ok')) {
+                $runPy = [string]$found.Source
                     $runPyArgs = $extra
                     Write-Output ('   .. tried(path,WINNER) ' + $cand + ' -> ' + $runPy)
                     break
@@ -554,6 +565,25 @@ if ($recipeId -ne 'office-deck') {
         } else {
             Write-Output '   OK   4a recipe local plane finished (exit 0)'
         }
+    }
+    # Round-45 forensics continued: which python seeded the venv, what lives
+    # on E:\ (E:\spider\python.exe is the machine's real non-venv python, at
+    # a non-standard path), and whether its Lib survived.
+    $cfgPath = Join-Path $repoParent 'ppt-master\.venv\pyvenv.cfg'
+    if (Test-Path -LiteralPath $cfgPath) {
+        Write-Output '   .. pyvenv.cfg:'
+        foreach ($line in [System.IO.File]::ReadAllLines($cfgPath)) { Write-Output ('      ' + $line) }
+    } else {
+        Write-Output ('   .. pyvenv.cfg MISSING: ' + $cfgPath)
+    }
+    try {
+        $eDirs = Get-ChildItem -LiteralPath 'E:\' -Directory -ErrorAction Stop | Select-Object -ExpandProperty Name
+        Write-Output ('   .. E:\ dirs: ' + ($eDirs -join ', '))
+    } catch {
+        Write-Output ('   .. E:\ listing failed: ' + $_.Exception.Message)
+    }
+    foreach ($p in @('E:\spider\Lib', 'E:\spider\Lib\encodings', 'E:\spider\Scripts\conda.exe', 'E:\spider\python.exe')) {
+        Write-Output ('   .. exists(' + $p + ')=' + (Test-Path -LiteralPath $p))
     }
     # 4b/4c judge the runner receipt, exactly like local_check.sh does
     $loopRec = '.\results\status\local_loop_receipt.txt'
