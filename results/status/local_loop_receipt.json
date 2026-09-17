@@ -1,0 +1,14 @@
+{
+  "schema": "local-loop.receipt.v1",
+  "at": "2026-09-17 10:12:04",
+  "recipe": "bridge-check",
+  "os": "linux",
+  "host": "LAPTOP-R77M5D6M",
+  "ok": true,
+  "checks": {},
+  "values": {
+    "skip": "bridge-verification round (01a0ad15): only the loop itself is under test - fetch, pull, sections 1+3, verdict push. No deck build by design."
+  },
+  "materials": {},
+  "opened": ""
+}

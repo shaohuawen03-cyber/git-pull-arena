@@ -1,0 +1,118 @@
+check round 38 on LAPTOP-R77M5D6M - started
+cmd: bash code/local_check.sh
+started: 2026-09-17 10:12:03
+
+== gates: the repo's pre-push list (code/gates.py)
+OK    deck-layout          OK: every page of every deck survives every tested input (including the round-28 machine state)
+OK    criteria-needles     OK: criteria needles all satisfiable here (34 checked, 0 not present yet)
+OK    payload-drift        OK: office-loop payload matches the repo code (19 file(s))
+OK    recipes-valid        LOOP: plan    : results/status/loop_plan.json
+SKIP  machine-task         (local-only: the local plane itself: the real install / real Office / real GUI check, run by the watcher on the user's machine as sections 3 and 4 of code/local_check.ps1 (or local_check.sh on Linux))
+== gates: 5 gate(s), 0 blocking failure(s)
+== deliverables: Office files checked on this machine
+   7 Office file(s) declared
+   OK   3a BRIDGE_01a0aa00_v2.8.1.docx sha256+size match (40685 B)
+   OK   3b BRIDGE_01a0aa00_v2.8.1.docx package parts present
+   OK   3c BRIDGE_01a0aa00_v2.8.1.docx every xml/rels part parses (17)
+   OK   3d BRIDGE_01a0aa00_v2.8.1.docx relationship targets all resolve
+   WARN 3e BRIDGE_01a0aa00_v2.8.1.docx: 1 part(s) not covered by [Content_Types].xml
+   OK   3f BRIDGE_01a0aa00_v2.8.1.docx contains '2.8.1'
+   OK   3f BRIDGE_01a0aa00_v2.8.1.docx contains 'git-sync'
+   OK   3f BRIDGE_01a0aa00_v2.8.1.docx contains 'local_check.ps1'
+   OK   3f BRIDGE_01a0aa00_v2.8.1.docx contains 'LAPTOP-R77M5D6M'
+   OK   3f BRIDGE_01a0aa00_v2.8.1.docx contains 'arena/01a0aa00-git-pull-arena'
+   OK   3a BRIDGE_01a0aa00_v2.8.1.pptx sha256+size match (37466 B)
+   OK   3b BRIDGE_01a0aa00_v2.8.1.pptx package parts present
+   OK   3c BRIDGE_01a0aa00_v2.8.1.pptx every xml/rels part parses (54)
+   OK   3d BRIDGE_01a0aa00_v2.8.1.pptx relationship targets all resolve
+   WARN 3e BRIDGE_01a0aa00_v2.8.1.pptx: 2 part(s) not covered by [Content_Types].xml
+   OK   3f BRIDGE_01a0aa00_v2.8.1.pptx contains '2.8.1'
+   OK   3f BRIDGE_01a0aa00_v2.8.1.pptx contains 'git-sync'
+   OK   3f BRIDGE_01a0aa00_v2.8.1.pptx contains 'local_check.ps1'
+   OK   3f BRIDGE_01a0aa00_v2.8.1.pptx contains 'LAPTOP-R77M5D6M'
+   OK   3f BRIDGE_01a0aa00_v2.8.1.pptx contains 'arena/01a0aa00-git-pull-arena'
+   OK   3g BRIDGE_01a0aa00_v2.8.1.pptx has 9 slide(s) >= 8
+   OK   3a GUIDE_01a0aa00_v2.8.1.docx sha256+size match (40598 B)
+   OK   3b GUIDE_01a0aa00_v2.8.1.docx package parts present
+   OK   3c GUIDE_01a0aa00_v2.8.1.docx every xml/rels part parses (17)
+   OK   3d GUIDE_01a0aa00_v2.8.1.docx relationship targets all resolve
+   WARN 3e GUIDE_01a0aa00_v2.8.1.docx: 1 part(s) not covered by [Content_Types].xml
+   OK   3f GUIDE_01a0aa00_v2.8.1.docx contains '2.8.1'
+   OK   3f GUIDE_01a0aa00_v2.8.1.docx contains 'git-sync'
+   OK   3f GUIDE_01a0aa00_v2.8.1.docx contains 'local_check.ps1'
+   OK   3f GUIDE_01a0aa00_v2.8.1.docx contains '使用说明'
+   OK   3f GUIDE_01a0aa00_v2.8.1.docx contains '.\bootstrap.ps1 -Auto'
+   OK   3f GUIDE_01a0aa00_v2.8.1.docx contains '.\download.ps1'
+   OK   3f GUIDE_01a0aa00_v2.8.1.docx contains 'agent-handoff.sh'
+   OK   3f GUIDE_01a0aa00_v2.8.1.docx contains 'LAPTOP-R77M5D6M'
+   OK   3f GUIDE_01a0aa00_v2.8.1.docx contains 'arena/01a0aa00-git-pull-arena'
+   OK   3a GUIDE_01a0aa00_v2.8.1.pptx sha256+size match (40308 B)
+   OK   3b GUIDE_01a0aa00_v2.8.1.pptx package parts present
+   OK   3c GUIDE_01a0aa00_v2.8.1.pptx every xml/rels part parses (56)
+   OK   3d GUIDE_01a0aa00_v2.8.1.pptx relationship targets all resolve
+   WARN 3e GUIDE_01a0aa00_v2.8.1.pptx: 2 part(s) not covered by [Content_Types].xml
+   OK   3f GUIDE_01a0aa00_v2.8.1.pptx contains '2.8.1'
+   OK   3f GUIDE_01a0aa00_v2.8.1.pptx contains 'git-sync'
+   OK   3f GUIDE_01a0aa00_v2.8.1.pptx contains 'local_check.ps1'
+   OK   3f GUIDE_01a0aa00_v2.8.1.pptx contains '使用说明'
+   OK   3f GUIDE_01a0aa00_v2.8.1.pptx contains '.\bootstrap.ps1 -Auto'
+   OK   3f GUIDE_01a0aa00_v2.8.1.pptx contains '.\download.ps1'
+   OK   3f GUIDE_01a0aa00_v2.8.1.pptx contains 'agent-handoff.sh'
+   OK   3f GUIDE_01a0aa00_v2.8.1.pptx contains 'LAPTOP-R77M5D6M'
+   OK   3f GUIDE_01a0aa00_v2.8.1.pptx contains 'arena/01a0aa00-git-pull-arena'
+   OK   3g GUIDE_01a0aa00_v2.8.1.pptx has 10 slide(s) >= 10
+   OK   3a DELIVERY_01a0aa00_v2.8.1.docx sha256+size match (39546 B)
+   OK   3b DELIVERY_01a0aa00_v2.8.1.docx package parts present
+   OK   3c DELIVERY_01a0aa00_v2.8.1.docx every xml/rels part parses (17)
+   OK   3d DELIVERY_01a0aa00_v2.8.1.docx relationship targets all resolve
+   WARN 3e DELIVERY_01a0aa00_v2.8.1.docx: 1 part(s) not covered by [Content_Types].xml
+   OK   3f DELIVERY_01a0aa00_v2.8.1.docx contains '2.8.1'
+   OK   3f DELIVERY_01a0aa00_v2.8.1.docx contains 'git-sync'
+   OK   3f DELIVERY_01a0aa00_v2.8.1.docx contains '交付清单'
+   OK   3f DELIVERY_01a0aa00_v2.8.1.docx contains 'download.ps1'
+   OK   3f DELIVERY_01a0aa00_v2.8.1.docx contains 'results/status/handshake.json'
+   OK   3f DELIVERY_01a0aa00_v2.8.1.docx contains 'round 21'
+   OK   3f DELIVERY_01a0aa00_v2.8.1.docx contains 'LAPTOP-R77M5D6M'
+   OK   3f DELIVERY_01a0aa00_v2.8.1.docx contains 'arena/01a0aa00-git-pull-arena'
+   OK   3a DELIVERY_01a0aa00_v2.8.1.pptx sha256+size match (35029 B)
+   OK   3b DELIVERY_01a0aa00_v2.8.1.pptx package parts present
+   OK   3c DELIVERY_01a0aa00_v2.8.1.pptx every xml/rels part parses (50)
+   OK   3d DELIVERY_01a0aa00_v2.8.1.pptx relationship targets all resolve
+   WARN 3e DELIVERY_01a0aa00_v2.8.1.pptx: 2 part(s) not covered by [Content_Types].xml
+   OK   3f DELIVERY_01a0aa00_v2.8.1.pptx contains '2.8.1'
+   OK   3f DELIVERY_01a0aa00_v2.8.1.pptx contains 'git-sync'
+   OK   3f DELIVERY_01a0aa00_v2.8.1.pptx contains '交付清单'
+   OK   3f DELIVERY_01a0aa00_v2.8.1.pptx contains 'download.ps1'
+   OK   3f DELIVERY_01a0aa00_v2.8.1.pptx contains 'results/status/handshake.json'
+   OK   3f DELIVERY_01a0aa00_v2.8.1.pptx contains 'round 21'
+   OK   3f DELIVERY_01a0aa00_v2.8.1.pptx contains 'LAPTOP-R77M5D6M'
+   OK   3f DELIVERY_01a0aa00_v2.8.1.pptx contains 'arena/01a0aa00-git-pull-arena'
+   OK   3g DELIVERY_01a0aa00_v2.8.1.pptx has 7 slide(s) >= 6
+   OK   3a DECK_01a0aa00_v2.8.1.pptx sha256+size match (46727 B)
+   OK   3b DECK_01a0aa00_v2.8.1.pptx package parts present
+   OK   3c DECK_01a0aa00_v2.8.1.pptx every xml/rels part parses (40)
+   OK   3d DECK_01a0aa00_v2.8.1.pptx relationship targets all resolve
+   WARN 3e DECK_01a0aa00_v2.8.1.pptx: 2 part(s) not covered by [Content_Types].xml
+   OK   3f DECK_01a0aa00_v2.8.1.pptx contains '2.8.1'
+   OK   3f DECK_01a0aa00_v2.8.1.pptx contains 'ppt-master'
+   OK   3f DECK_01a0aa00_v2.8.1.pptx contains 'local_check.ps1'
+   OK   3f DECK_01a0aa00_v2.8.1.pptx contains '已打通'
+   OK   3f DECK_01a0aa00_v2.8.1.pptx contains '自循环'
+   OK   3f DECK_01a0aa00_v2.8.1.pptx contains 'LAPTOP-R77M5D6M'
+   OK   3f DECK_01a0aa00_v2.8.1.pptx contains 'arena/01a0aa00-git-pull-arena'
+   OK   3g DECK_01a0aa00_v2.8.1.pptx has 12 slide(s) >= 12
+   OK: 0 deliverable problem(s)
+== 3h: a real application opens the declared files
+   WARN 3h no LibreOffice on this machine - open test counted as SKIP
+== 4: the task's local plane (code/local_loop.py local)
+   .. 4a running the recipe's local plane
+LOOP: receipt : results/status/local_loop_receipt.txt
+LOOP: loop-ok recipe=bridge-check os=linux host=LAPTOP-R77M5D6M ok=true  opened=unknown
+== 4b the recipe receipt this machine wrote
+loop-ok recipe=bridge-check os=linux host=LAPTOP-R77M5D6M ok=true  opened=unknown
+   OK   4b every declared key matched
+   WARN 4c no application open test on this machine (opened=unknown) - structural checks stand
+== local checks passed
+
+elapsed: 1s
+check round 38 on LAPTOP-R77M5D6M - passed (exit 0)
