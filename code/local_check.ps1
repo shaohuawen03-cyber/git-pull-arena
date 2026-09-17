@@ -460,15 +460,19 @@ try {
 } catch { }
 Write-Output ('   .. 4 recipe: ' + $recipeId)
 if ($recipeId -ne 'office-deck') {
-    # Phase 1: absolute paths (probed, never assumed). Conda does not put
-    # itself on PATH by default and the scheduled task may carry a minimal
-    # PATH anyway (round 42: python3 / python / py -3 all unresolvable), so
-    # ask the well-known roots first - starting with the ppt-master venv
-    # that lives next to this repo and provably runs (round 41: venv py
-    # 3.11.9). The runner only needs the stdlib (local_loop + probe); the
-    # ML interpreter is discovered separately by the probe/wrapper.
-    $absCands = @()
+    # Two-phase python discovery with per-candidate diagnostics (round 44:
+    # round 43 tried 3 candidates and ALL failed the probe, so print what
+    # each one said instead of guessing). Phase 1: absolute paths, starting
+    # with the ppt-master venv next to this repo (round 41: venv py 3.11.9
+    # ran the whole pipeline). Phase 2: PATH names. A candidate only wins
+    # when it exits 0 AND prints py-ok. The runner only needs the stdlib
+    # (local_loop + probe); the ML interpreter is discovered separately by
+    # the probe/wrapper.
+    Write-Output ('   .. 4a script root: ' + $PSScriptRoot)
     $repoParent = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
+    Write-Output ('   .. 4a repo parent: ' + $repoParent)
+    if ($env:USERPROFILE) { Write-Output ('   .. 4a userprofile: ' + $env:USERPROFILE) }
+    $absCands = @()
     $absCands += (Join-Path $repoParent 'ppt-master\.venv\Scripts\python.exe')
     if ($env:USERPROFILE) {
         foreach ($d in @('miniconda3', 'anaconda3', 'miniforge3', 'mambaforge')) {
@@ -482,19 +486,27 @@ if ($recipeId -ne 'office-deck') {
     $runPyArgs = @()
     $tried = 0
     foreach ($cand in $absCands) {
-        if (-not (Test-Path -LiteralPath $cand)) { continue }
+        if (-not (Test-Path -LiteralPath $cand)) {
+            Write-Output ('   .. tried(abs,missing) ' + $cand)
+            continue
+        }
         $tried += 1
+        $code = -999
+        $snippet = ''
         try {
             $probe = (& $cand -c 'import sys;print("py-ok")' 2>&1 | Out-String)
-            if (($LASTEXITCODE -eq 0) -and ($probe -match 'py-ok')) {
+            $code = $LASTEXITCODE
+            if ($probe) { $snippet = ([string]$probe).Trim().Substring(0, [Math]::Min(120, ([string]$probe).Trim().Length)) }
+            if (($code -eq 0) -and ($probe -match 'py-ok')) {
                 $runPy = [string]$cand
+                Write-Output ('   .. tried(abs,WINNER) ' + $cand)
                 break
             }
-        } catch { }
+        } catch {
+            $snippet = ('threw: ' + $_.Exception.Message)
+        }
+        Write-Output ('   .. tried(abs) ' + $cand + ' exit=' + $code + ' out=' + $snippet)
     }
-    # Phase 2: PATH names, each proved by execution (a bare Store stub
-    # answers Get-Command and then fails, so only a probe that prints
-    # counts).
     if (-not $runPy) {
         foreach ($cand in @('python3', 'python', 'py -3')) {
             $parts = @($cand -split ' ')
@@ -502,16 +514,27 @@ if ($recipeId -ne 'office-deck') {
             $extra = @()
             if ($parts.Count -gt 1) { $extra = $parts[1..($parts.Count - 1)] }
             $found = Get-Command $exeName -ErrorAction SilentlyContinue | Select-Object -First 1
-            if (-not $found) { continue }
+            if (-not $found) {
+                Write-Output ('   .. tried(path,missing) ' + $cand)
+                continue
+            }
             $tried += 1
+            $code = -999
+            $snippet = ''
             try {
                 $probe = (& $found.Source @extra -c 'import sys;print("py-ok")' 2>&1 | Out-String)
-                if (($LASTEXITCODE -eq 0) -and ($probe -match 'py-ok')) {
+                $code = $LASTEXITCODE
+                if ($probe) { $snippet = ([string]$probe).Trim().Substring(0, [Math]::Min(120, ([string]$probe).Trim().Length)) }
+                if (($code -eq 0) -and ($probe -match 'py-ok')) {
                     $runPy = [string]$found.Source
                     $runPyArgs = $extra
+                    Write-Output ('   .. tried(path,WINNER) ' + $cand + ' -> ' + $runPy)
                     break
                 }
-            } catch { }
+            } catch {
+                $snippet = ('threw: ' + $_.Exception.Message)
+            }
+            Write-Output ('   .. tried(path) ' + $cand + ' -> ' + [string]$found.Source + ' exit=' + $code + ' out=' + $snippet)
         }
     }
     if (-not $runPy) {
