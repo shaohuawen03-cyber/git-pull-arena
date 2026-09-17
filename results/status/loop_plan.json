@@ -1,6 +1,6 @@
 {
   "schema": "local-loop.plan.v1",
-  "at": "2026-09-17 06:47:06",
+  "at": "2026-09-17 06:47:33",
   "repo": "/home/user/git-pull-arena",
   "recipe": "peptide-probe",
   "title": "Recon: report this machine's conda envs and ML packages",
