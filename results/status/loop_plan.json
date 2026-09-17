@@ -1,25 +1,25 @@
 {
   "schema": "local-loop.plan.v1",
-  "at": "2026-09-17 06:36:35",
-  "repo": "/home/user/git-pull-arena",
+  "at": "2026-09-17 14:38:01",
+  "repo": "E:\\0github\\git-sync\\git-pull-arena-01a0ad15",
   "recipe": "peptide-probe",
   "title": "Recon: report this machine's conda envs and ML packages",
-  "target_os": "linux",
+  "target_os": "windows",
   "needs": [],
   "steps": [
     {
       "plane": "sandbox",
       "id": "gates",
-      "run": "/usr/bin/python3 code/gates.py",
+      "run": "E:\\spider\\python.exe code/gates.py",
       "produces": [],
       "why": "the repo's own gate list (code/gates.json) - the same questions check_all.sh asks"
     },
     {
       "plane": "local",
       "id": "probe-machine",
-      "run": "/usr/bin/python3 code/machine_probe.py",
+      "run": "E:\\spider\\python.exe code/machine_probe.py",
       "produces": [],
-      "why": "stdlib-only recon: conda locations (cron PATH is minimal, so well-known paths are tried explicitly), env list, per-env ML import table, pypi reachability. Writes machine_probe.json/txt + probe_receipt.txt."
+      "why": "same probe - it is OS-agnostic"
     }
   ],
   "receipt": {

@@ -1,9 +1,9 @@
 {
-  "round": 44,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 44: Windows probe with discovery diagnostics - print every python candidate result",
-  "arena_updated": "2026-09-17 06:36:36",
-  "local_updated": null
+    "round":  44,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 44: Windows probe with discovery diagnostics - print every python candidate result",
+    "arena_updated":  "2026-09-17 06:36:36",
+    "local_updated":  "2026-09-17 14:38:48"
 }
