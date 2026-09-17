@@ -1,25 +1,52 @@
 {
   "schema": "local-loop.plan.v1",
-  "at": "2026-09-17 02:10:12",
+  "at": "2026-09-17 02:12:34",
   "repo": "/home/user/git-pull-arena",
-  "recipe": "bridge-check",
-  "title": "Bridge verification: prove the machine answers rounds, no local build",
+  "recipe": "office-deck",
+  "title": "PPT Master deck authored here, built and opened on the machine",
   "target_os": "linux",
-  "needs": [],
+  "needs": [
+    "python-3.10+",
+    "office-com-or-libreoffice"
+  ],
   "steps": [
+    {
+      "plane": "sandbox",
+      "id": "pages",
+      "run": "/usr/bin/python3 code/make_deck_umami.py --out build/pages",
+      "produces": [
+        "build/pages/*.svg"
+      ],
+      "why": "author the deck's pages from THIS repo's numbers - fast, no install, catches layout bugs before a round is spent"
+    },
     {
       "plane": "sandbox",
       "id": "gates",
       "run": "/usr/bin/python3 code/gates.py",
       "produces": [],
       "why": "the repo's own gate list (code/gates.json) - the same questions check_all.sh asks"
+    },
+    {
+      "plane": "local",
+      "id": "install-and-build-deck",
+      "run": "/usr/bin/bash code/pptmaster_local.sh --repo /home/user/git-pull-arena --root /home/user",
+      "produces": [],
+      "why": "the whole local plane on Linux/macOS in one step: code/pptmaster_local.sh finds a python 3.10+, clones ppt-master if it is missing, builds the venv + core deps, runs the pipeline (pages authored here -> svg_quality_checker -> svg_to_pptx -> structural re-check -> pptx_delivery_check) and proves a real application can open the file with LibreOffice headless; the receipt it writes is what this runner then asserts"
     }
   ],
   "receipt": {
-    "file": null,
-    "keys": {},
-    "evidence": []
+    "file": "results/status/pptmaster_local.txt",
+    "keys": {
+      "deck_slides": "12",
+      "checker_blocking": "0",
+      "markers": "ok"
+    },
+    "evidence": [
+      "results/umami/DECK_*.pptx",
+      "results/umami/pptmaster_local_quality.json",
+      "results/umami/svg/*.svg"
+    ]
   },
-  "skip": "bridge-verification round (01a0ad15): only the loop itself is under test - fetch, pull, sections 1+3, verdict push. No deck build by design.",
-  "note": "Session 01a0ad15: WSL bridge-verification recipe. The machine proves fetch/pull/check/push; sections 1+3 still run (gate list + deliverable integrity), section 4 is skipped by design - no deck build, no LibreOffice needed. For real tasks, point code/loop.json back at office-deck (or another recipe)."
+  "skip": "",
+  "note": "The default test task of this repo (docx/pptx + a native pptx deck). The task itself is NOT part of the runner: copy this file, change the steps, and the same loop drives a different repo's task. Which deck (generator/project/output) comes from code/pptmaster_deck.json."
 }
