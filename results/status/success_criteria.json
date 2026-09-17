@@ -1,5 +1,5 @@
 {
-  "description": "session 01a0aa00 on arena/01a0aa00-git-pull-arena (round 32): PPT Master is installed on the user's Windows machine (E:\\0github\\git-sync\\ppt-master, its own venv python 3.11.9) and the machine builds the deck there. Rounds 28-31 proved that loop with the git-sync deck; the user then asked for a NEW deck on a different subject - machine-learning screening of umami peptides (鲜味肽) - generated with the installed venv, and explicitly NOT overwriting the deck the previous task produced (E:\\0github\\git-sync\\ppt-master\\out\\DECK_local_20260916.pptx). So the deck subject now lives in code/pptmaster_deck.json: generator code/make_deck_umami.py, project umami-01a0aa00, output DECK_umami_01a0aa00_v1.pptx in its own project directory (nothing of the git-sync deck is touched), evidence in results/umami/. The 12 pages go through svg_quality_checker (0 blocking), svg_to_pptx and a real PowerPoint read-only open, all on that machine, and the finished pptx plus the checker report and the page sources are pushed back into results/umami/ as the evidence. code/deck_kit.py is the shared framework both decks use; code/deck_layout_selftest.py stress-tests every deck in the repo (including the exact round-28 machine state) on every push. Every number in the umami deck is marked 示例 (illustrative) - the repo has no peptide dataset and the deck says so on the page instead of inventing measurements. Round 39-40 (01a0ad15, WSL): recon then peptide ML - machine_probe reported 13 conda envs (ml_ready=yes, best=AMPidentifier); the peptide-ml recipe re-discovers a qualifying env python at runtime and trains a RandomForest (300/100 split) on SYNTHETIC DEMO peptides; evidence in results/peptide_ml/ (predictions.csv + metrics.json + run_report.txt). Round 41 (01a0ad15, Windows): native office-deck passed (true PowerPoint open, venv py 3.11.9). Round 42+: local_check.ps1 dispatches non-office-deck recipes to local_loop.py; Windows peptide ML evidence overwrites results/peptide_ml/ (WSL round-40 outputs archived in results/peptide_ml_linux/).",
+  "description": "session 01a0aa00 on arena/01a0aa00-git-pull-arena (round 32): PPT Master is installed on the user's Windows machine (E:\\0github\\git-sync\\ppt-master, its own venv python 3.11.9) and the machine builds the deck there. Rounds 28-31 proved that loop with the git-sync deck; the user then asked for a NEW deck on a different subject - machine-learning screening of umami peptides (鲜味肽) - generated with the installed venv, and explicitly NOT overwriting the deck the previous task produced (E:\\0github\\git-sync\\ppt-master\\out\\DECK_local_20260916.pptx). So the deck subject now lives in code/pptmaster_deck.json: generator code/make_deck_umami.py, project umami-01a0aa00, output DECK_umami_01a0aa00_v1.pptx in its own project directory (nothing of the git-sync deck is touched), evidence in results/umami/. The 12 pages go through svg_quality_checker (0 blocking), svg_to_pptx and a real PowerPoint read-only open, all on that machine, and the finished pptx plus the checker report and the page sources are pushed back into results/umami/ as the evidence. code/deck_kit.py is the shared framework both decks use; code/deck_layout_selftest.py stress-tests every deck in the repo (including the exact round-28 machine state) on every push. Every number in the umami deck is marked 示例 (illustrative) - the repo has no peptide dataset and the deck says so on the page instead of inventing measurements. Round 39-40 (01a0ad15, WSL): recon then peptide ML - machine_probe reported 13 conda envs (ml_ready=yes, best=AMPidentifier); the peptide-ml recipe re-discovers a qualifying env python at runtime and trains a RandomForest (300/100 split) on SYNTHETIC DEMO peptides; evidence in results/peptide_ml/ (predictions.csv + metrics.json + run_report.txt). Round 41 (01a0ad15, Windows): native office-deck passed (true PowerPoint open, venv py 3.11.9). Round 42+: local_check.ps1 dispatches non-office-deck recipes to local_loop.py; Windows peptide ML evidence overwrites results/peptide_ml/ (WSL round-40 outputs archived in results/peptide_ml_linux/). Round 46 (01a0ad15, Windows): native peptide-probe PASSED via the venv runner - conda base E:\\spider, 22 envs, 3 ML-qualified (NTxPred2 py3.10.7 numpy1.25/pandas1.5/sklearn1.5/torchCPU, DIP, meta-analysis). Rounds 42-45 failed honestly on the way: PATH-only lookup, then a PS5.1 native-arg quote-strip that broke every -c probe identically.",
   "require_files": [
     "01a0a821.md",
     "results/status/handshake.json",
@@ -80,7 +80,8 @@
     "results/peptide_ml_linux/predictions.csv",
     "results/peptide_ml_linux/metrics.json",
     "code/run_peptide_ml.py",
-    "results/status/machine_probe_linux.json"
+    "results/status/machine_probe_linux.json",
+    "results/status/machine_probe_windows.json"
   ],
   "forbid_files": [
     "local/inbox",
@@ -124,7 +125,8 @@
     "code/peptide_ml.py": "SYNTHETIC DEMO DATA",
     "code/run_peptide_ml.sh": "ml-ok",
     "code/machine_probe.py": "machine-probe.v1",
-    "code/run_peptide_ml.py": "numpy, pandas, sklearn; print("
+    "code/run_peptide_ml.py": "numpy, pandas, sklearn; print(",
+    "results/status/machine_probe_windows.json": "machine-probe.v1"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",
