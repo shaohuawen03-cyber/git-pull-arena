@@ -1,9 +1,9 @@
 {
-  "round": 47,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 47: Windows peptide ML - run RandomForest on the machine's own conda env (NTxPred2 expected)",
-  "arena_updated": "2026-09-17 06:47:38",
-  "local_updated": null
+    "round":  47,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 47: Windows peptide ML - run RandomForest on the machine\u0027s own conda env (NTxPred2 expected)",
+    "arena_updated":  "2026-09-17 06:47:38",
+    "local_updated":  "2026-09-17 14:49:09"
 }

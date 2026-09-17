@@ -1,1 +1,1 @@
-loop-ok recipe=peptide-probe os=windows host=LAPTOP-R77M5D6M ok=true probe=done(/done) opened=unknown
+loop-ok recipe=peptide-ml os=windows host=LAPTOP-R77M5D6M ok=true predictions=written(/written) model=rf_aac(/rf_aac) opened=unknown
