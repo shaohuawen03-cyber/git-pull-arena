@@ -1,15 +1,24 @@
 {
   "schema": "local-loop.plan.v1",
-  "at": "2026-09-17 06:49:48",
+  "at": "2026-09-17 06:50:00",
   "repo": "/home/user/git-pull-arena",
-  "recipe": "peptide-ml",
-  "title": "Peptide ML prediction on the machine's own conda env",
+  "recipe": "office-deck",
+  "title": "PPT Master deck authored here, built and opened on the machine",
   "target_os": "linux",
   "needs": [
-    "python-3.9+",
-    "conda env with numpy+pandas+sklearn"
+    "python-3.10+",
+    "office-com-or-libreoffice"
   ],
   "steps": [
+    {
+      "plane": "sandbox",
+      "id": "pages",
+      "run": "/usr/bin/python3 code/make_deck_umami.py --out build/pages",
+      "produces": [
+        "build/pages/*.svg"
+      ],
+      "why": "author the deck's pages from THIS repo's numbers - fast, no install, catches layout bugs before a round is spent"
+    },
     {
       "plane": "sandbox",
       "id": "gates",
@@ -19,24 +28,25 @@
     },
     {
       "plane": "local",
-      "id": "peptide-ml-train",
-      "run": "/usr/bin/bash code/run_peptide_ml.sh",
+      "id": "install-and-build-deck",
+      "run": "/usr/bin/bash code/pptmaster_local.sh --repo /home/user/git-pull-arena --root /home/user",
       "produces": [],
-      "why": "discover the machine's ML python (probe report + fresh scan, first with numpy/pandas/sklearn wins) and run the umami-peptide RandomForest: 300 train / 100 test, metrics + predictions.csv + self-assert accuracy>=0.80"
+      "why": "the whole local plane on Linux/macOS in one step: code/pptmaster_local.sh finds a python 3.10+, clones ppt-master if it is missing, builds the venv + core deps, runs the pipeline (pages authored here -> svg_quality_checker -> svg_to_pptx -> structural re-check -> pptx_delivery_check) and proves a real application can open the file with LibreOffice headless; the receipt it writes is what this runner then asserts"
     }
   ],
   "receipt": {
-    "file": "results/peptide_ml/peptide_receipt.txt",
+    "file": "results/status/pptmaster_local.txt",
     "keys": {
-      "predictions": "written",
-      "model": "rf_aac"
+      "deck_slides": "12",
+      "checker_blocking": "0",
+      "markers": "ok"
     },
     "evidence": [
-      "results/peptide_ml/*.csv",
-      "results/peptide_ml/*.json",
-      "results/peptide_ml/*.txt"
+      "results/umami/DECK_*.pptx",
+      "results/umami/pptmaster_local_quality.json",
+      "results/umami/svg/*.svg"
     ]
   },
   "skip": "",
-  "note": "Session 01a0ad15 round 40: the user asked for a peptide ML prediction using their local conda envs (round 39 probe: 13 envs, ml_ready=yes, best=AMPidentifier). The wrapper re-discovers a qualifying interpreter at runtime (no hard-coded env, no install). Training data is SYNTHETIC DEMO (seeded, known rule) - a functional test; replace build_dataset() with a real CSV reader for real data."
+  "note": "The default test task of this repo (docx/pptx + a native pptx deck). The task itself is NOT part of the runner: copy this file, change the steps, and the same loop drives a different repo's task. Which deck (generator/project/output) comes from code/pptmaster_deck.json."
 }
