@@ -1,10 +1,10 @@
 {
   "schema": "local-loop.plan.v1",
-  "at": "2026-09-17 14:48:23",
-  "repo": "E:\\0github\\git-sync\\git-pull-arena-01a0ad15",
+  "at": "2026-09-17 06:49:48",
+  "repo": "/home/user/git-pull-arena",
   "recipe": "peptide-ml",
   "title": "Peptide ML prediction on the machine's own conda env",
-  "target_os": "windows",
+  "target_os": "linux",
   "needs": [
     "python-3.9+",
     "conda env with numpy+pandas+sklearn"
@@ -13,16 +13,16 @@
     {
       "plane": "sandbox",
       "id": "gates",
-      "run": "E:\\spider\\python.exe code/gates.py",
+      "run": "/usr/bin/python3 code/gates.py",
       "produces": [],
       "why": "the repo's own gate list (code/gates.json) - the same questions check_all.sh asks"
     },
     {
       "plane": "local",
       "id": "peptide-ml-train",
-      "run": "E:\\spider\\python.exe code/run_peptide_ml.py",
+      "run": "/usr/bin/bash code/run_peptide_ml.sh",
       "produces": [],
-      "why": "bash-free python wrapper: git-bash exists on the machine but is not on PATH, so {bash} cannot be trusted there. run_peptide_ml.py re-discovers a qualifying interpreter (probe report + fresh scan of both layouts, first with numpy/pandas/sklearn wins) and runs the umami-peptide RandomForest: 300 train / 100 test, metrics + predictions.csv + self-assert accuracy>=0.80"
+      "why": "discover the machine's ML python (probe report + fresh scan, first with numpy/pandas/sklearn wins) and run the umami-peptide RandomForest: 300 train / 100 test, metrics + predictions.csv + self-assert accuracy>=0.80"
     }
   ],
   "receipt": {
