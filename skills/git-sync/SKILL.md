@@ -130,6 +130,9 @@ description: "TRIGGER: user says 安装https://arena.ai/agent/01a0a821 的skills
 | **助手侧**：`git log` 只剩 `Initial commit`，`git status` 全是新文件 | `.git` 被静默重置：`agent-recover.sh`（工作区不动），然后 `agent-sync.sh` 提交（它内部也会自动自愈） |
 | 助手侧 fetch 拉不到远端分支 | `agent-sync.sh` / `agent-recover.sh` 现已自动补全 refspec（`+refs/heads/*:...`）再 fetch |
 | 分支对不上 / 一团乱 | `.\doctor.ps1 -Fix`：重建 refspec + stash + 切回配置分支 + 拉取 |
+| 本机 push 报 `permission denied`（存的是旧号凭据） | 别重登录：浏览器把旧号加为仓库 Collaborator，两边各用各号共存（`CASE_STUDY.md` §2）；`push.ps1` 的"branch moved"遇 exit 4 是误报 |
+| 本机 `-c` 探针在每台 python 上都 Traceback | PS 5.1 调 native 会吞双引号：`-c` 里只准单引号（`CASE_STUDY.md` §5） |
+| 同一分支 Win＋WSL 双值守 | 会抢答/重复 verdict：只准一侧 live（`CASE_STUDY.md` §3） |
 
 ## 5. 首次使用
 

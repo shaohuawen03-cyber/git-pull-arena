@@ -102,3 +102,26 @@ Arena 会话（沙箱）                  用户 Windows 机器
   `pptx_delivery_check` 的权重提高（已经是 errors=0 硬要求）。
 * 交付物 docx 的生成器 `code/make_bridge_report.py` 是案例内容定制的；
   新会话应照它的结构写自己的内容，**不要**直接复制里面的文字。
+
+## 7. 第二季：01a0ad15 肽探针 → 肽 ML（rounds 39–47，WSL＋Windows 双链路）
+
+**对象**：`shaohuawen03-cyber/git-pull-arena`，分支 `arena/01a0ad15-git-pull-arena`，
+同一台 `LAPTOP-R77M5D6M`。用户要"用本地 conda 环境测一个肽的 ML 预测"。
+**结果**：round 39–40（WSL：13 环境，best=`AMPidentifier`，RF acc=0.97）；
+round 46–47（Windows 原生：22 环境，best=`NTxPred2`，RF acc=0.97），标准 172/172。
+
+配方链：`peptide-probe`（`code/machine_probe.py`，conda 清单＋ML 达标表，
+Windows 版落 `machine_probe_windows.json`）→ `peptide-ml`
+（`code/run_peptide_ml.py` 按探针顺序自发现解释器，零安装零硬编码 →
+`code/peptide_ml.py` 跑 RandomForest，300/100 分层，断言 acc≥0.80）。
+Windows 能跑是因为 `local_check.ps1` §4 加了 runner 分流
+（recipe≠office-deck → `local_loop.py local --os windows`），
+以及 Windows 步骤禁 bash（`{bash}` 不在 PATH 上）。
+
+三条经验：① 先跑便宜的 probe 轮验证分流＋发现链，再跑干活轮；
+② 种子固定的模型跨 OS 输出字节一致——verdict 里没有 `predictions.csv`
+是正常的，归属信息看 `metrics.json`（host/解释器/版本/时间戳）；
+③ 活目录 `results/peptide_ml/` 给 verdict 覆盖，上个 OS 的版进
+`results/peptide_ml_linux/` 归档，WSL/Windows 证据永不互埋。
+连接层（双账号共存、找 python 四连败、引号吞噬）的完整故事见
+`skills/git-sync/CASE_STUDY.md`。
