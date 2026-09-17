@@ -1,9 +1,9 @@
 {
-  "round": 41,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "round 41: Windows native office-deck passed - true PowerPoint open + ppt-master rebuild, criteria 165/165",
-  "arena_updated": "2026-09-17 03:17:06",
-  "local_updated": "2026-09-17 11:14:46"
+  "round": 42,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 42: Windows probe via new ps1 runner dispatch - run machine_probe.py natively, report Windows conda envs",
+  "arena_updated": "2026-09-17 06:31:34",
+  "local_updated": null
 }
