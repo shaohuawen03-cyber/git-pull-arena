@@ -56,6 +56,7 @@ def conda_candidates():
         roots = [os.path.join(home, d) for d in
                  ('miniconda3', 'anaconda3', 'miniforge3', 'mambaforge')]
         roots += [r'C:\\miniconda3', r'C:\\anaconda3', r'C:\\tools\\miniconda3']
+        roots += ['E:/spider', 'E:/']
         subs = ['condabin\\conda.bat', 'Scripts\\conda.exe', 'condabin\\conda.exe']
     else:
         roots = [os.path.join(home, d) for d in

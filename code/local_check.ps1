@@ -485,6 +485,9 @@ if ($recipeId -ne 'office-deck') {
     if ($env:USERPROFILE) { Write-Output ('   .. 4a userprofile: ' + $env:USERPROFILE) }
     $absCands = @()
     $absCands += (Join-Path $repoParent 'ppt-master\.venv\Scripts\python.exe')
+    # E:\spider is this machine's real conda base (round 45 forensics:
+    # Scripts\conda.exe lives there); the standard roots missed it.
+    $absCands += 'E:\spider\python.exe'
     if ($env:USERPROFILE) {
         foreach ($d in @('miniconda3', 'anaconda3', 'miniforge3', 'mambaforge')) {
             $absCands += (Join-Path $env:USERPROFILE ($d + '\python.exe'))
@@ -505,7 +508,7 @@ if ($recipeId -ne 'office-deck') {
         $code = -999
         $snippet = ''
         try {
-            $probe = (& $cand -c 'import sys;print("py-ok")' 2>&1 | Out-String)
+            $probe = (& $cand -c 'import sys;print(''py-ok'')' 2>&1 | Out-String)
             $code = $LASTEXITCODE
             if ($probe) { $snippet = ([string]$probe).Trim(); if ($snippet.Length -gt 300) { $snippet = $snippet.Substring($snippet.Length - 300) } }
             if (($code -eq 0) -and ($probe -match 'py-ok')) {
@@ -533,7 +536,7 @@ if ($recipeId -ne 'office-deck') {
             $code = -999
             $snippet = ''
             try {
-                $probe = (& $found.Source @extra -c 'import sys;print("py-ok")' 2>&1 | Out-String)
+                $probe = (& $found.Source @extra -c 'import sys;print(''py-ok'')' 2>&1 | Out-String)
             $code = $LASTEXITCODE
             if ($probe) { $snippet = ([string]$probe).Trim(); if ($snippet.Length -gt 300) { $snippet = $snippet.Substring($snippet.Length - 300) } }
             if (($code -eq 0) -and ($probe -match 'py-ok')) {

@@ -41,6 +41,7 @@ def candidates(repo):
              ('miniconda3', 'anaconda3', 'miniforge3', 'mambaforge')]
     roots += ['/opt/conda', '/opt/miniconda3', '/usr/local/miniconda3',
               'C:\\miniconda3', 'C:\\anaconda3', 'C:\\tools\\miniconda3']
+    roots += ['E:/spider', 'E:/']
     layouts = ('bin/python', 'bin/python3', 'python.exe',
                os.path.join('envs', '*', 'bin', 'python'),
                os.path.join('envs', '*', 'python.exe'))
