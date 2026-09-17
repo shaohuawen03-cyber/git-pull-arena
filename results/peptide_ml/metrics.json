@@ -17,12 +17,12 @@
     "fn": 3,
     "tp": 7
   },
-  "host": "e2b.local",
-  "python": "/tmp/mltest/bin/python",
-  "python_version": "3.11.2",
-  "numpy": "2.4.6",
-  "pandas": "3.0.5",
-  "sklearn": "1.9.1",
-  "elapsed_s": 1.6,
-  "at": "2026-09-17 02:23:40"
+  "host": "LAPTOP-R77M5D6M",
+  "python": "/home/w24e/miniconda3/envs/AMPidentifier/bin/python",
+  "python_version": "3.11.15",
+  "numpy": "2.4.0",
+  "pandas": "2.3.3",
+  "sklearn": "1.8.0",
+  "elapsed_s": 1.4,
+  "at": "2026-09-17 10:24:08"
 }

@@ -1,9 +1,9 @@
 {
   "round": 40,
   "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
   "note": "round 40: run peptide ML with machine conda env - discover sklearn python, train RF 300/100, write predictions+metrics, self-assert acc>=0.80",
   "arena_updated": "2026-09-17 02:23:57",
-  "local_updated": null
+  "local_updated": "2026-09-17 10:24:08"
 }
