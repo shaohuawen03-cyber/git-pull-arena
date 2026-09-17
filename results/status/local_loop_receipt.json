@@ -1,14 +1,30 @@
 {
   "schema": "local-loop.receipt.v1",
-  "at": "2026-09-17 10:12:04",
-  "recipe": "bridge-check",
+  "at": "2026-09-17 10:20:49",
+  "recipe": "peptide-probe",
   "os": "linux",
   "host": "LAPTOP-R77M5D6M",
   "ok": true,
-  "checks": {},
-  "values": {
-    "skip": "bridge-verification round (01a0ad15): only the loop itself is under test - fetch, pull, sections 1+3, verdict push. No deck build by design."
+  "checks": {
+    "probe": {
+      "want": "done",
+      "got": "done",
+      "ok": true
+    }
   },
-  "materials": {},
+  "values": {
+    "probe": "done",
+    "envs": "13",
+    "ml_ready": "yes",
+    "best": "AMPidentifier"
+  },
+  "materials": {
+    "results/status/machine_probe.json": [
+      "results/status/machine_probe.json"
+    ],
+    "results/status/machine_probe.txt": [
+      "results/status/machine_probe.txt"
+    ]
+  },
   "opened": ""
 }

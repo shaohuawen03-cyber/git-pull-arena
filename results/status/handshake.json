@@ -1,9 +1,9 @@
 {
   "round": 39,
   "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
   "note": "round 39: recon - run machine_probe.py, report conda envs + ML packages (no install, read-only)",
   "arena_updated": "2026-09-17 02:19:25",
-  "local_updated": null
+  "local_updated": "2026-09-17 10:20:49"
 }
