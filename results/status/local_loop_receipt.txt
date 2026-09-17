@@ -1,1 +1,1 @@
-loop-ok recipe=peptide-probe os=linux host=LAPTOP-R77M5D6M ok=true probe=done(/done) opened=unknown
+loop-ok recipe=bridge-check os=linux host=LAPTOP-R77M5D6M ok=true  opened=unknown
