@@ -1,9 +1,9 @@
 {
-  "round": 37,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-09-17 01:28:08",
-  "local_updated": "2026-09-17 09:27:50"
+  "round": 38,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 38: WSL bridge verification - sections 1+3 only, local plane skipped by design (no deck build, no LibreOffice)",
+  "arena_updated": "2026-09-17 02:10:14",
+  "local_updated": null
 }
