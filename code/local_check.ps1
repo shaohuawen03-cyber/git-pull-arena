@@ -19,6 +19,36 @@ Set-Location (Join-Path $PSScriptRoot '..')   # repo root (this file lives in co
 
 $fail = 0
 
+# 0. Explicit one-shot local task dispatcher. The exact handshake note is
+#    required so ordinary verification rounds never launch software.
+$handshakePath = '.\results\status\handshake.json'
+$handshakeNote = ''
+$handshakeArena = ''
+try {
+    if (Test-Path -LiteralPath $handshakePath) {
+        $hs = Get-Content -LiteralPath $handshakePath -Raw -Encoding UTF8 | ConvertFrom-Json
+        $handshakeNote = [string]$hs.note
+        $handshakeArena = [string]$hs.arena_state
+    }
+} catch {
+    Write-Output ('[WARN] handshake read failed: ' + $_.Exception.Message)
+}
+if ($handshakeNote -eq 'install-valorant-e-drive' -and $handshakeArena -eq 'awaiting_check') {
+    Write-Output '== task: approved VALORANT CN E: installer request'
+    if (-not (Test-Path -LiteralPath '.\code\valorant_install.ps1')) {
+        Write-Output '[FAIL] task script missing: code\\valorant_install.ps1'
+        $fail = 1
+    } else {
+        $taskOut = @(& .\code\valorant_install.ps1 2>&1)
+        foreach ($line in $taskOut) { Write-Output $line }
+        $taskCode = $LASTEXITCODE
+        if ($taskCode -ne 0) {
+            Write-Output ('[FAIL] VALORANT task exited with code ' + $taskCode)
+            $fail = 1
+        }
+    }
+}
+
 # 1. the standard gate (.ps1 ASCII + branch guard + script consistency)
 #    (forward slashes on purpose: this also runs under the scheduled task,
 #     where bash may eat backslashes; Write-Output on purpose: the watcher
