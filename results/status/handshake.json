@@ -1,9 +1,9 @@
 {
-  "round": 50,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "monitor-valorant-install-e-drive",
-  "arena_updated": "2026-09-19 11:19:52",
-  "local_updated": null
+    "round":  50,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "monitor-valorant-install-e-drive",
+    "arena_updated":  "2026-09-19 11:19:52",
+    "local_updated":  "2026-09-19 19:47:45"
 }
