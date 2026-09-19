@@ -1,0 +1,333 @@
+check round 49 on LAPTOP-R77M5D6M - passed (exit 0)
+cmd: powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1
+elapsed: 84s
+
+== task: approved VALORANT CN E: installer request
+== E drive free space: 180.12 GB
+== downloading official VALORANT CN installer v2.17.0
+   source: https://down.val.qq.com/aclos/release/2.17.0.500/VALORANT_CN_installer_v2.17.0.500.exe
+   file  : E:\0github\valorant-installer\VALORANT_CN_installer_v2.17.0.500.exe
+== installer launched, pid=45160
+== in the installer UI choose Advanced Options and set the game path to E:\Riot Games
+== accept the Vanguard/UAC prompt locally; do not reboot until the installer asks
+OK: all .ps1 files are ASCII-only
+OK: sync.config.json branch=arena/01a0b94f-git-pull-arena
+OK: sync.config.json branch matches HEAD (arena/01a0b94f-git-pull-arena)
+OK: root scripts identical to skills/git-sync/scripts
+OK: no drive-style variable typos ($var:)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+OK: every .ps1 parses
+OK    deck-layout          OK: every page of every deck survives every tested input (including the round-28 machine state)
+OK    criteria-needles     OK: criteria needles all satisfiable here (43 checked, 0 not present yet)
+OK    payload-drift        OK: office-loop payload matches the repo code (19 file(s))
+OK    recipes-valid        LOOP: plan    : results\status\loop_plan.json
+SKIP  machine-task         (local-only: the local plane itself: the real install / real Office / real GUI check, run by the watcher on the user's machine as sections 3 and 4 of code/local_check.ps1 (or local_check.sh on Linux))
+== gates: 5 gate(s), 0 blocking failure(s)
+   (gate ran via E:\hermes\git\bin\bash.exe [git])
+== accept 2a: silent push PROVEN (ls-remote + push --dry-run, prompts disabled)
+== accept 2b (fallback): one LONG-LIVED loop process - one brief flash per logon,
+   not per poll. For zero flash: admin PowerShell -> .\watch.ps1 -Unregister ;
+   .\watch.ps1 -Register -Headless   (or fix the launcher, see watch-*.log)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+== check_loop_summary PASSED
+== accept 2c: watcher closing lines verified (every exit path has its summary)
+== deliverables: 7 Office file(s) declared in deliverable/OFFICE_HASHES.json
+   OK   3a sha256 + bytes match: deliverable/BRIDGE_01a0aa00_v2.8.1.docx (40685 B, docx)
+   OK   3b all 6 required parts present in deliverable/BRIDGE_01a0aa00_v2.8.1.docx
+   OK   3c every XML part parses in deliverable/BRIDGE_01a0aa00_v2.8.1.docx (17 parts)
+   OK   3d every relationship target resolves in deliverable/BRIDGE_01a0aa00_v2.8.1.docx
+   OK   3e content types cover every part of deliverable/BRIDGE_01a0aa00_v2.8.1.docx
+   OK   3f all 5 text markers present in deliverable/BRIDGE_01a0aa00_v2.8.1.docx
+   OK   3a sha256 + bytes match: deliverable/BRIDGE_01a0aa00_v2.8.1.pptx (37466 B, pptx)
+   OK   3b all 9 required parts present in deliverable/BRIDGE_01a0aa00_v2.8.1.pptx
+   OK   3c every XML part parses in deliverable/BRIDGE_01a0aa00_v2.8.1.pptx (54 parts)
+   OK   3d every relationship target resolves in deliverable/BRIDGE_01a0aa00_v2.8.1.pptx
+   OK   3e content types cover every part of deliverable/BRIDGE_01a0aa00_v2.8.1.pptx
+   OK   3f all 5 text markers present in deliverable/BRIDGE_01a0aa00_v2.8.1.pptx
+   OK   3g slides in deliverable/BRIDGE_01a0aa00_v2.8.1.pptx : 9 >= 8
+   OK   3a sha256 + bytes match: deliverable/GUIDE_01a0aa00_v2.8.1.docx (40598 B, docx)
+   OK   3b all 6 required parts present in deliverable/GUIDE_01a0aa00_v2.8.1.docx
+   OK   3c every XML part parses in deliverable/GUIDE_01a0aa00_v2.8.1.docx (17 parts)
+   OK   3d every relationship target resolves in deliverable/GUIDE_01a0aa00_v2.8.1.docx
+   OK   3e content types cover every part of deliverable/GUIDE_01a0aa00_v2.8.1.docx
+   OK   3f all 9 text markers present in deliverable/GUIDE_01a0aa00_v2.8.1.docx
+   OK   3a sha256 + bytes match: deliverable/GUIDE_01a0aa00_v2.8.1.pptx (40308 B, pptx)
+   OK   3b all 9 required parts present in deliverable/GUIDE_01a0aa00_v2.8.1.pptx
+   OK   3c every XML part parses in deliverable/GUIDE_01a0aa00_v2.8.1.pptx (56 parts)
+   OK   3d every relationship target resolves in deliverable/GUIDE_01a0aa00_v2.8.1.pptx
+   OK   3e content types cover every part of deliverable/GUIDE_01a0aa00_v2.8.1.pptx
+   OK   3f all 9 text markers present in deliverable/GUIDE_01a0aa00_v2.8.1.pptx
+   OK   3g slides in deliverable/GUIDE_01a0aa00_v2.8.1.pptx : 10 >= 10
+   OK   3a sha256 + bytes match: deliverable/DELIVERY_01a0aa00_v2.8.1.docx (39546 B, docx)
+   OK   3b all 6 required parts present in deliverable/DELIVERY_01a0aa00_v2.8.1.docx
+   OK   3c every XML part parses in deliverable/DELIVERY_01a0aa00_v2.8.1.docx (17 parts)
+   OK   3d every relationship target resolves in deliverable/DELIVERY_01a0aa00_v2.8.1.docx
+   OK   3e content types cover every part of deliverable/DELIVERY_01a0aa00_v2.8.1.docx
+   OK   3f all 8 text markers present in deliverable/DELIVERY_01a0aa00_v2.8.1.docx
+   OK   3a sha256 + bytes match: deliverable/DELIVERY_01a0aa00_v2.8.1.pptx (35029 B, pptx)
+   OK   3b all 9 required parts present in deliverable/DELIVERY_01a0aa00_v2.8.1.pptx
+   OK   3c every XML part parses in deliverable/DELIVERY_01a0aa00_v2.8.1.pptx (50 parts)
+   OK   3d every relationship target resolves in deliverable/DELIVERY_01a0aa00_v2.8.1.pptx
+   OK   3e content types cover every part of deliverable/DELIVERY_01a0aa00_v2.8.1.pptx
+   OK   3f all 8 text markers present in deliverable/DELIVERY_01a0aa00_v2.8.1.pptx
+   OK   3g slides in deliverable/DELIVERY_01a0aa00_v2.8.1.pptx : 7 >= 6
+   OK   3a sha256 + bytes match: deliverable/DECK_01a0aa00_v2.8.1.pptx (46727 B, pptx)
+   OK   3b all 9 required parts present in deliverable/DECK_01a0aa00_v2.8.1.pptx
+   OK   3c every XML part parses in deliverable/DECK_01a0aa00_v2.8.1.pptx (40 parts)
+   OK   3d every relationship target resolves in deliverable/DECK_01a0aa00_v2.8.1.pptx
+   OK   3e content types cover every part of deliverable/DECK_01a0aa00_v2.8.1.pptx
+   OK   3f all 7 text markers present in deliverable/DECK_01a0aa00_v2.8.1.pptx
+   OK   3g slides in deliverable/DECK_01a0aa00_v2.8.1.pptx : 12 >= 12
+   OK   3h Word.Application opened read-only, name=BRIDGE_01a0aa00_v2.8.1.docx : deliverable\BRIDGE_01a0aa00_v2.8.1.docx
+   OK   3h PowerPoint.Application opened read-only, slides=9 : deliverable\BRIDGE_01a0aa00_v2.8.1.pptx
+   OK   3h Word.Application opened read-only, name=GUIDE_01a0aa00_v2.8.1.docx : deliverable\GUIDE_01a0aa00_v2.8.1.docx
+   OK   3h PowerPoint.Application opened read-only, slides=10 : deliverable\GUIDE_01a0aa00_v2.8.1.pptx
+   OK   3h Word.Application opened read-only, name=DELIVERY_01a0aa00_v2.8.1.docx : deliverable\DELIVERY_01a0aa00_v2.8.1.docx
+   OK   3h PowerPoint.Application opened read-only, slides=7 : deliverable\DELIVERY_01a0aa00_v2.8.1.pptx
+   OK   3h PowerPoint.Application opened read-only, slides=12 : deliverable\DECK_01a0aa00_v2.8.1.pptx
+   .. 4 recipe: office-deck
+== ppt-master: local install + local deck generation
+   .. 4a launcher: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe
+PPTMASTER: probe   : E:\0github\.git-sync-pptmaster-pyprobe.py
+PPTMASTER: repo    : E:\0github\git-pull-arena-01a0b94f
+PPTMASTER: install : E:\0github\ppt-master
+PPTMASTER: host    : LAPTOP-R77M5D6M
+PPTMASTER: git     : E:\hermes\git\cmd\git.exe
+PPTMASTER: already cloned
+PPTMASTER: python  : E:\0github\ppt-master\.venv\Scripts\python.exe 3.11
+PPTMASTER: venv    : present
+PPTMASTER: pip     : pip 24.0 from E:\0github\ppt-master\.venv\Lib\site-packages\pip (python 3.11)
+PPTMASTER: deps    : already installed for a50758a (core ok, full False)
+PPTMASTER: deps    : pip install -r requirements.txt (optional extras, best effort)
+PPTMASTER: [WARN] optional extras did not all install - the deck pipeline only needs the core set
+PPTMASTER: out before: DECK_umami_01a0aa00_v1.pptx  47389 B  2026-09-19 19:13
+PPTMASTER: environment=windows host=LAPTOP-R77M5D6M
+PPTMASTER: install dir: E:\0github\ppt-master
+PPTMASTER: ppt-master v6.6.0 (a50758a), skill=True
+PPTMASTER: python: E:\0github\ppt-master\.venv\Scripts\python.exe (3.11.9, mode=venv)
+PPTMASTER: attribution_guard exit=0
+PPTMASTER: deps core OK
+PPTMASTER: project re-used: umami-01a0aa00_20260919
+PPTMASTER: authored 12 SVG page(s) with code/make_deck_umami.py (exit 0)
+PPTMASTER:   generator: wrote 01_cover.svg               3242 B  zones= 6
+PPTMASTER:   generator: wrote 02_toc.svg                 4265 B  zones= 7
+PPTMASTER:   generator: wrote 03_section_a.svg           2049 B  zones= 5
+PPTMASTER:   generator: wrote 04_problem.svg             4012 B  zones= 5
+PPTMASTER:   generator: wrote 05_data.svg                4109 B  zones= 8
+PPTMASTER:   generator: wrote 06_features.svg            4724 B  zones= 7
+PPTMASTER:   generator: wrote 07_models.svg              4395 B  zones= 6
+PPTMASTER:   generator: wrote 08_eval.svg                4356 B  zones= 8
+PPTMASTER:   generator: wrote 09_funnel.svg              4209 B  zones= 7
+PPTMASTER:   generator: wrote 10_wetlab.svg              3861 B  zones= 7
+PPTMASTER:   generator: wrote 11_reproduce.svg           4046 B  zones= 6
+PPTMASTER:   generator: wrote 12_ending.svg              2356 B  zones= 6
+PPTMASTER:   generator: pages sha256=029a4a0ee069f641 bytes=45624
+PPTMASTER: compact_svg_styles exit=0
+PPTMASTER: svg_quality_checker exit=0: total=12 passed=12 warnings=0 errors=0 blocking=0
+PPTMASTER: checker evidence: results/umami/pptmaster_local_quality.json + svg/ (12 page(s))
+PPTMASTER: svg_to_pptx exit=0 -> E:\0github\ppt-master\out\DECK_umami_01a0aa00_v1.pptx
+PPTMASTER: export status=passed quality_gate=passed slides=12
+PPTMASTER: deck kept: results/umami/DECK_umami_01a0aa00_v1.pptx
+PPTMASTER: deck: 47393 B, 12 slides, 40 parts, xml=True rels=True markers=True
+PPTMASTER: pptx_delivery_check exit=0 errors=0 advisories=0
+PPTMASTER: receipt: results\status\pptmaster_local.txt
+PPTMASTER: receipt copy: results/umami\pptmaster_local.txt
+PPTMASTER: OK: toolchain verified and deck regenerated + verified in this environment
+PPTMASTER: deck    : E:\0github\ppt-master\out\DECK_umami_01a0aa00_v1.pptx
+PPTMASTER: out after : DECK_umami_01a0aa00_v1.pptx  47393 B  2026-09-19 19:17
+PPTMASTER: powerpoint: ok slides=12
+PPTMASTER: powerpoint yes (ok slides=12)
+PPTMASTER: local install verified: python + deps + guard + checker + export + PowerPoint open
+PPTMASTER: run it by hand: E:\0github\ppt-master\.venv\Scripts\python.exe E:\0github\ppt-master\skills\ppt-master\scripts\svg_to_pptx.py <project> --quick-generate
+PPTMASTER: or double-click: E:\0github\ppt-master\make-deck.cmd
+   OK   4a ppt-master installed + verified on this machine (exit 0)
+   OK   4b receipt: environment=windows
+   OK   4b receipt: deck_slides=12
+   OK   4b receipt: checker_blocking=0
+   OK   4b receipt: markers=ok
+   OK   4c real PowerPoint opened the deck this machine generated
+== accept 2d: hands-free auto_pull/auto_push present in watch.ps1
+== success criteria: results/status/success_criteria.json
+   session 01a0aa00 on arena/01a0aa00-git-pull-arena (round 32): PPT Master is installed on the user's Windows machine (E:\0github\git-sync\ppt-master, its own venv python 3.11.9) and the machine builds the deck there. Rounds 28-31 proved that loop with the git-sync deck; the user then asked for a NEW deck on a different subject - machine-learning screening of umami peptides (鲜味肽) - generated with the installed venv, and explicitly NOT overwriting the deck the previous task produced (E:\0github\git-sync\ppt-master\out\DECK_local_20260916.pptx). So the deck subject now lives in code/pptmaster_deck.json: generator code/make_deck_umami.py, project umami-01a0aa00, output DECK_umami_01a0aa00_v1.pptx in its own project directory (nothing of the git-sync deck is touched), evidence in results/umami/. The 12 pages go through svg_quality_checker (0 blocking), svg_to_pptx and a real PowerPoint read-only open, all on that machine, and the finished pptx plus the checker report and the page sources are pushed back into results/umami/ as the evidence. code/deck_kit.py is the shared framework both decks use; code/deck_layout_selftest.py stress-tests every deck in the repo (including the exact round-28 machine state) on every push. Every number in the umami deck is marked 示例 (illustrative) - the repo has no peptide dataset and the deck says so on the page instead of inventing measurements. Round 39-40 (01a0ad15, WSL): recon then peptide ML - machine_probe reported 13 conda envs (ml_ready=yes, best=AMPidentifier); the peptide-ml recipe re-discovers a qualifying env python at runtime and trains a RandomForest (300/100 split) on SYNTHETIC DEMO peptides; evidence in results/peptide_ml/ (predictions.csv + metrics.json + run_report.txt). Round 41 (01a0ad15, Windows): native office-deck passed (true PowerPoint open, venv py 3.11.9). Round 42+: local_check.ps1 dispatches non-office-deck recipes to local_loop.py; Windows peptide ML evidence overwrites results/peptide_ml/ (WSL round-40 outputs archived in results/peptide_ml_linux/). Round 46 (01a0ad15, Windows): native peptide-probe PASSED via the venv runner - conda base E:\spider, 22 envs, 3 ML-qualified (NTxPred2 py3.10.7 numpy1.25/pandas1.5/sklearn1.5/torchCPU, DIP, meta-analysis). Rounds 42-45 failed honestly on the way: PATH-only lookup, then a PS5.1 native-arg quote-strip that broke every -c probe identically. Case study: skills/git-sync/CASE_STUDY.md records the 01a0ad15 WSL+Windows dual-link success on the shaohuawen03 account (collaborator coexistence, E:\spider conda base, PS5.1 quote-strip, runner dispatch) so future sessions start in minutes.
+   OK   exists: 01a0a821.md (4201 B)
+   OK   exists: results/status/handshake.json (200 B)
+   OK   exists: skills/git-sync/VERSION (6 B)
+   OK   exists: skills/git-sync/scripts/agent-install.sh (15448 B)
+   OK   exists: skills/git-sync/scripts/agent-handoff.sh (5323 B)
+   OK   exists: skills/git-sync/scripts/agent-check.sh (10163 B)
+   OK   exists: skills/git-sync/scripts/agent-wait.sh (5942 B)
+   OK   exists: skills/git-sync/scripts/agent-handsfree.sh (3989 B)
+   OK   exists: skills/git-sync/scripts/agent-criteria.sh (5190 B)
+   OK   exists: skills/git-sync/scripts/watch.ps1 (84094 B)
+   OK   exists: skills/git-sync/templates/one-sentence.md (6733 B)
+   OK   exists: skills/git-sync/templates/task-loop.md (2238 B)
+   OK   exists: skills/git-sync/templates/gate.yml (1166 B)
+   OK   exists: code/check_all.sh (10703 B)
+   OK   exists: code/local_check.ps1 (43799 B)
+   OK   exists: code/make_bridge_report.py (54400 B)
+   OK   exists: deliverable/OFFICE_HASHES.json (7461 B)
+   OK   exists: deliverable/BRIDGE_01a0aa00_v2.8.1.docx (40685 B)
+   OK   exists: deliverable/BRIDGE_01a0aa00_v2.8.1.pptx (37466 B)
+   OK   exists: watch.ps1 (84094 B)
+   OK   exists: deliverable/GUIDE_01a0aa00_v2.8.1.docx (40598 B)
+   OK   exists: deliverable/GUIDE_01a0aa00_v2.8.1.pptx (40308 B)
+   OK   exists: deliverable/DELIVERY_01a0aa00_v2.8.1.docx (39546 B)
+   OK   exists: deliverable/DELIVERY_01a0aa00_v2.8.1.pptx (35029 B)
+   OK   exists: code/make_deck_pptmaster.py (23528 B)
+   OK   exists: deliverable/DECK_01a0aa00_v2.8.1.pptx (46727 B)
+   OK   exists: results/status/deck_build.md (6665 B)
+   OK   exists: code/pptmaster_local.ps1 (27010 B)
+   OK   exists: code/pptmaster_pipeline.py (29864 B)
+   OK   exists: results/status/pptmaster_install.md (7477 B)
+   OK   exists: results/status/pptmaster_local.json (1548 B)
+   OK   exists: results/status/pptmaster_local.txt (223 B)
+   OK   exists: results/umami/DECK_umami_01a0aa00_v1.pptx (47393 B)
+   OK   exists: results/umami/pptmaster_local_quality.json (23762 B)
+   OK   exists: results/umami/pptmaster_local.txt (222 B)
+   OK   exists: code/make_deck_umami.py (19243 B)
+   OK   exists: code/deck_kit.py (16468 B)
+   OK   exists: code/pptmaster_deck.json (889 B)
+   OK   exists: code/deck_layout_selftest.py (5247 B)
+   OK   exists: skills/office-loop/SKILL.md (7078 B)
+   OK   exists: skills/office-loop/CASE_STUDY.md (9688 B)
+   OK   exists: skills/office-loop/prompts.md (5426 B)
+   OK   exists: skills/office-loop/agent-install.sh (1141 B)
+   OK   exists: skills/office-loop/tools/install.py (20155 B)
+   OK   exists: skills/office-loop/tools/check_payload.py (2371 B)
+   OK   exists: skills/office-loop/VERSION (6 B)
+   OK   exists: skills/office-loop/templates/local_check_office.ps1 (14059 B)
+   OK   exists: skills/office-loop/templates/local_check_pptmaster.ps1 (8008 B)
+   OK   exists: skills/office-loop/payload/code/pptmaster_local.ps1 (27010 B)
+   OK   exists: code/check_criteria_needles.py (3165 B)
+   OK   exists: code/pull_machine_evidence.sh (3207 B)
+   OK   exists: skills/office-loop/payload/code/pull_machine_evidence.sh (3207 B)
+   OK   exists: code/local_loop.py (17811 B)
+   OK   exists: code/gates.py (5543 B)
+   OK   exists: code/gates.json (2372 B)
+   OK   exists: code/loop.json (213 B)
+   OK   exists: code/recipes/office-deck.json (3186 B)
+   OK   exists: code/local_check.sh (10134 B)
+   OK   exists: code/pptmaster_local.sh (9635 B)
+   OK   exists: code/watch-linux.sh (5580 B)
+   OK   exists: skills/office-loop/ARCHITECTURE.md (8937 B)
+   OK   exists: skills/office-loop/PORTING.md (8503 B)
+   OK   exists: skills/office-loop/CHANGELOG.md (2232 B)
+   OK   exists: skills/office-loop/templates/local-loop.service (685 B)
+   OK   exists: skills/office-loop/templates/local-loop.timer (224 B)
+   OK   exists: skills/office-loop/templates/local-loop.cron (303 B)
+   OK   exists: code/bootstrap-linux.sh (12088 B)
+   OK   exists: code/handoff_linux.sh (4933 B)
+   OK   exists: code/peptide_ml.py (7775 B)
+   OK   exists: code/run_peptide_ml.sh (3344 B)
+   OK   exists: code/machine_probe.py (9575 B)
+   OK   exists: code/recipes/peptide-ml.json (2353 B)
+   OK   exists: code/recipes/peptide-probe.json (1861 B)
+   OK   exists: results/peptide_ml/predictions.csv (2160 B)
+   OK   exists: results/peptide_ml/metrics.json (680 B)
+   OK   exists: results/status/machine_probe.json (7500 B)
+   OK   exists: results/peptide_ml_linux/predictions.csv (2160 B)
+   OK   exists: results/peptide_ml_linux/metrics.json (684 B)
+   OK   exists: code/run_peptide_ml.py (3534 B)
+   OK   exists: results/status/machine_probe_linux.json (5296 B)
+   OK   exists: results/status/machine_probe_windows.json (7500 B)
+   OK   exists: skills/git-sync/CASE_STUDY.md (14724 B)
+   OK   absent: local/inbox
+   OK   absent: local/status_receipts
+   OK   absent: skills/docx_skill.py
+   OK   absent: local_bridge_skill.py
+   OK   contains skills/git-sync/VERSION <- 2.9.2
+   OK   contains skills/git-sync/sync.config.json <- arena/01a0b94f-git-pull-arena
+   OK   contains 01a0a821.md <- arena/01a0aa00-git-pull-arena
+   OK   contains skills/git-sync/templates/one-sentence.md <- agent-handoff.sh
+   OK   contains skills/git-sync/scripts/agent-install.sh <- refusing to downgrade
+   OK   contains code/check_all.sh <- py -3
+   OK   contains watch.ps1 <- function Invoke-AutoPull
+   OK   contains skills/git-sync/scripts/watch.ps1 <- function Invoke-Focus
+   OK   contains deliverable/OFFICE_HASHES.json <- arena/01a0aa00-git-pull-arena
+   OK   contains code/make_deck_pptmaster.py <- svg_to_pptx.py
+   OK   contains results/status/deck_build.md <- svg_quality_checker.py
+   OK   contains results/status/pptmaster_local.txt <- deck_slides=12
+   OK   contains code/pptmaster_local.ps1 <- attribution_guard
+   OK   contains code/pptmaster_pipeline.py <- svg_quality_checker.py
+   OK   contains results/status/pptmaster_install.md <- make-deck.cmd
+   OK   contains code/pptmaster_deck.json <- make_deck_umami.py
+   OK   contains code/make_deck_umami.py <- 鲜味肽
+   OK   contains code/deck_kit.py <- bounds_overlaps
+   OK   contains results/umami/pptmaster_local.txt <- checker_blocking=0
+   OK   contains skills/office-loop/VERSION <- 2.0.0
+   OK   contains skills/office-loop/CASE_STUDY.md <- round-28
+   OK   contains skills/office-loop/prompts.md <- 不要打开 arena.ai
+   OK   contains skills/office-loop/tools/install.py <- refresh-sections
+   OK   contains skills/office-loop/SKILL.md <- office-loop
+   OK   contains code/recipes/office-deck.json <- local-loop.recipe.v1
+   OK   contains code/gates.json <- criteria-needles
+   OK   contains skills/office-loop/PORTING.md <- WSL
+   OK   contains skills/office-loop/ARCHITECTURE.md <- pre-commit
+   OK   contains code/handoff_linux.sh <- code/bootstrap-linux.sh
+   OK   contains code/bootstrap-linux.sh <- local-loop-
+   OK   contains results/peptide_ml/metrics.json <- "accuracy"
+   OK   contains results/peptide_ml/peptide_receipt.txt <- predictions=written
+   OK   contains code/peptide_ml.py <- SYNTHETIC DEMO DATA
+   OK   contains code/run_peptide_ml.sh <- ml-ok
+   OK   contains code/machine_probe.py <- machine-probe.v1
+   OK   contains code/run_peptide_ml.py <- numpy, pandas, sklearn; print(
+   OK   contains results/status/machine_probe_windows.json <- machine-probe.v1
+   OK   contains skills/git-sync/CASE_STUDY.md <- NTxPred2
+   OK   regex watch.ps1
+   OK   regex code/local_check.ps1
+   OK   regex deliverable/OFFICE_HASHES.json
+   OK   regex code/pptmaster_deck.json
+   OK   regex results/peptide_ml/predictions.csv
+   OK   size skills/git-sync/scripts/agent-handoff.sh: 5323 >= 2000
+   OK   size skills/git-sync/scripts/agent-install.sh: 15448 >= 10000
+   OK   size skills/git-sync/scripts/agent-check.sh: 10163 >= 4000
+   OK   size code/check_all.sh: 10703 >= 8000
+   OK   size code/local_check.ps1: 43799 >= 12000
+   OK   size code/make_bridge_report.py: 54400 >= 8000
+   OK   size deliverable/OFFICE_HASHES.json: 7461 >= 500
+   OK   size deliverable/BRIDGE_01a0aa00_v2.8.1.docx: 40685 >= 5000
+   OK   size deliverable/BRIDGE_01a0aa00_v2.8.1.pptx: 37466 >= 15000
+   OK   size watch.ps1: 84094 >= 20000
+   OK   size deliverable/GUIDE_01a0aa00_v2.8.1.docx: 40598 >= 5000
+   OK   size deliverable/GUIDE_01a0aa00_v2.8.1.pptx: 40308 >= 15000
+   OK   size deliverable/DELIVERY_01a0aa00_v2.8.1.docx: 39546 >= 5000
+   OK   size deliverable/DELIVERY_01a0aa00_v2.8.1.pptx: 35029 >= 15000
+   OK   size deliverable/DECK_01a0aa00_v2.8.1.pptx: 46727 >= 20000
+   OK   size code/make_deck_pptmaster.py: 23528 >= 8000
+   OK   size code/pptmaster_local.ps1: 27010 >= 8000
+   OK   size code/pptmaster_pipeline.py: 29864 >= 8000
+   OK   size results/status/pptmaster_install.md: 7477 >= 2000
+   OK   size results/status/pptmaster_local.txt: 223 >= 100
+   OK   size code/make_deck_umami.py: 19243 >= 8000
+   OK   size code/deck_kit.py: 16468 >= 8000
+   OK   size results/umami/DECK_umami_01a0aa00_v1.pptx: 47393 >= 20000
+   OK   size skills/office-loop/SKILL.md: 7078 >= 3000
+   OK   size skills/office-loop/CASE_STUDY.md: 9688 >= 3000
+   OK   size skills/office-loop/tools/install.py: 20155 >= 8000
+   OK   size code/check_criteria_needles.py: 3165 >= 2000
+   OK   size code/pull_machine_evidence.sh: 3207 >= 1500
+   OK   size code/local_loop.py: 17811 >= 8000
+   OK   size skills/office-loop/ARCHITECTURE.md: 8937 >= 3000
+   OK   size skills/office-loop/PORTING.md: 8503 >= 3000
+   OK   size code/bootstrap-linux.sh: 12088 >= 6000
+   OK   size code/handoff_linux.sh: 4933 >= 2500
+   OK   size results/peptide_ml/predictions.csv: 2160 >= 2000
+   OK   size results/peptide_ml/metrics.json: 680 >= 200
+   OK   size code/peptide_ml.py: 7775 >= 4000
+   OK   size code/run_peptide_ml.sh: 3344 >= 1500
+   OK   size skills/git-sync/CASE_STUDY.md: 14724 >= 3000
+   OK   size deliverable/BRIDGE_01a0aa00_v2.8.1.docx: 40685 <= 3000000
+   OK   size deliverable/BRIDGE_01a0aa00_v2.8.1.pptx: 37466 <= 3000000
+   OK   size deliverable/GUIDE_01a0aa00_v2.8.1.docx: 40598 <= 3000000
+   OK   size deliverable/GUIDE_01a0aa00_v2.8.1.pptx: 40308 <= 3000000
+   OK   size deliverable/DELIVERY_01a0aa00_v2.8.1.docx: 39546 <= 3000000
+   OK   size deliverable/DELIVERY_01a0aa00_v2.8.1.pptx: 35029 <= 3000000
+   OK   size deliverable/DECK_01a0aa00_v2.8.1.pptx: 46727 <= 3000000
+   OK   size results/umami/DECK_umami_01a0aa00_v1.pptx: 47393 <= 3000000
+== local checks passed

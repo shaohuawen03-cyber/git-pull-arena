@@ -1,0 +1,13 @@
+﻿{
+    "schema":  "valorant-install.v1",
+    "at":  "2026-09-19 19:16:15",
+    "host":  "LAPTOP-R77M5D6M",
+    "drive":  "E:",
+    "phase":  "installer-launched",
+    "message":  "installer UI launched; choose E:\\Riot Games in Advanced Options",
+    "version":  "2.17.0",
+    "installer":  "E:\\0github\\valorant-installer\\VALORANT_CN_installer_v2.17.0.500.exe",
+    "process_id":  45160,
+    "free_gb":  180.12,
+    "target_hint":  "E:\\Riot Games"
+}
