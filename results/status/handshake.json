@@ -1,9 +1,9 @@
 {
-  "round": 49,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-09-19 11:17:23",
-  "local_updated": "2026-09-19 19:17:09"
+  "round": 50,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "monitor-valorant-install-e-drive",
+  "arena_updated": "2026-09-19 11:19:52",
+  "local_updated": null
 }
