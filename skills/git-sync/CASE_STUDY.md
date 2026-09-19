@@ -101,3 +101,100 @@ round 47：`NTxPred2` 3.9 秒跑完，acc=0.97（P=1.00 R=0.70），104 秒 verd
 * **`require_contains` 的值必须是字符串**：门禁按 `str(needle) not in body` 判，
   传 list 会变成 Python repr（`['a', 'b']`）永远匹配不上——一个文件只 pin 一个子串，
   要 pin 多个就选横跨两者的那一段原文。
+
+## 9. 每克隆账号钉住（v2.9.0，2026-09-17，会话 `01a0ae7a`）
+
+**现场**：仓库 `shaohuawen03-cyber/new`（本机克隆 `E:\0github\git-sync\new-01a0ae7a`），
+Windows 侧 gh 默认账号 `mqgg5630-cyber`、凭据库 dpapi，`auth.ps1 -Verify` 报
+`Permission to shaohuawen03-cyber/new.git denied to mqgg5630-cybe ... 403`——
+**凭据是好的（40 字符 gho_ 令牌），403 是权限**。
+
+**修法（用户选 B：不改仓库权限）**：
+```powershell
+gh auth login --git-protocol https     # 加一个 shaohuawen03-cyber 登录
+gh auth switch -u mqgg5630-cyber       # ★ 默认账号切回 mqgg，否则 git-pull-arena / zhongqi 全部 403
+.\auth.ps1 -Account shaohuawen03-cyber # 把【这个克隆】钉住
+.\auth.ps1 -Verify                    # push --dry-run PASSED
+```
+
+**两条 shell 机制（实测，不是猜的）**：
+
+1. **helper 列表是累加的**：机器级 `credential.helper`（GCM）与
+   `credential.https://github.com.helper`（全局 gh = active 账号）都会排在前面先应答，
+   只 `--add` 一条更具体的 helper **等于没设**。必须先写一条**空值** `credential.helper` 清空列表，再钉。
+   实测（git 2.39，同一份 global 配置）：
+   `只 add` → 应答者是机器级 helper；`先 add 空值再 add pin` → 应答者是 pin。
+2. **`test -n $(...)` 是陷阱**：POSIX `test` 收到单个参数 `-n` 时**恒为真**，于是
+   `!test -n $(gh auth token -u X) && GH_TOKEN=$(...) gh auth git-credential` 在
+   账号不可用时仍会执行——而且 `GH_TOKEN` 为空时 gh 会**回落 active 账号**，
+   等于静默用错身份。最终写成失败关闭、且**不含双引号**（cmd 传递安全）：
+   `!if T=$(Q auth token -u NAME); then GH_TOKEN=$T Q auth git-credential; else exit 1; fi`。
+
+**附带**：`-Auto` 的零窗口启动器在杀软下报 `%1 不是有效的 Win32 应用程序`，自动回退 flash 模式
+（每次登录闪一次，功能不变）；想零闪就给 `C:\ProgramData\git-sync\` 加排除，或管理员跑
+`.\watch.ps1 -Register -Headless`（需 gh 令牌可用）。
+
+## 10. v2.9.0 钉账号的两连坑（2026-09-17 下午，会话 `01a0ae7a` 实测）
+
+**症状**：`E:\0github\git-sync\new-01a0ae7a` 执行 `auth.ps1 -Account shaohuawen03-cyber` →
+`[FAIL] could not write the local pin:`（详情为空）；随后 `-Verify` 里 push 直接报
+``if T=$(...); then ...; else exit 1; fi get: -c: line 1: syntax error near unexpected token `get'``。
+
+**坑 1：git 会往 helper 命令后面追加 `"$@"`**。git 执行 `!` 开头的 helper 等价于
+`sh -c '<value> "$@"' '<value>' get`，所以值必须是**被调用的函数**：
+`!f() { ...; }; f` → 变成 `f get` ✅；而 `!if ...; then ...; fi` → 变成 `if ...; fi get` → 语法错误 ❌。
+写成 `test -n $(...) && ...` 还有第二个坑：POSIX `test` 收到单个参数 `-n` 时**恒为真**，
+且 `GH_TOKEN` 为空时 gh 会**回落 active 账号**（= 静默用错身份）。最终形态（无引号、可经 cmd）：
+
+```
+!f() { T=$('C:/Program Files/GitHub CLI/gh.exe' auth token -u NAME) || exit 1; GH_TOKEN=$T 'C:/Program Files/GitHub CLI/gh.exe' auth git-credential $@; }; f
+```
+
+**坑 2：空值复位必须写在本地列表最前面，而且写进去不可靠**。实测（git 2.39，global 层有一个
+能正常应答的 generic helper）：
+* 只写本地 `credential.https://github.com.helper` → **机器级 generic 抢先应答**（所以用户手打那条无效）；
+* 本地先写一条**空值** `credential.helper` 再 pin → pin 生效 ✅；
+* 没有空值复位时的对照实验 → 又回到机器级账号 ❌。
+
+而"写一条空值"在 Windows 上会失败：空参数经 cmd/MSYS 可能被吞掉，`git config key ""` 退化成读操作并 exit 1
+（这正是 `could not write the local pin:` 的来源）。v2.9.1 起三层兜底并逐层读回验证：
+argv（`--replace-all credential.helper ""`）→ `git config --stdin`（git ≥ 2.45，空值走 stdin，不经过 argv）→
+直接编辑 `.git/config`（在 `[credential]` 段首插入 `helper = `）。
+
+**坑 3（设计决定）：钉住后不加后备 helper**。若把机器级 helper 追加在后面当后备，账号令牌失效时
+git 会拿机器默认账号（错误身份）继续推——"失败关闭"就没意义了。宁可明确失败，让人看见。
+
+**怎么快速自检**：`auth.ps1 -Account <login>` 成功时会打印实际生效的那一层（argv/stdin/file）与
+`probe: the credential now comes from ...`；`-Accounts` 会显示 PINNED 与"谁能推本仓库"。
+
+## 11. 删掉一个被跟踪的文件，会被"分叉自愈"还原（2026-09-17 实测）
+
+**现场**：把跑完的临时脚本 `.patch_291.py` 从分支上删掉——
+`git rm --cached` + `rm` 后再跑 `agent-sync.sh`，提交里**看不到这次删除**，文件随后又出现在工作区。
+
+**原因**：`agent-sync.sh` / `agent-check.sh` 的分叉自愈里有两步连着走：
+`git reset --mixed origin/<branch>`（把索引退回远端 = 文件回到索引）紧接着
+`git ls-files -d | xargs -r git checkout --`（"索引里有、工作区没了"的文件一律**还原**）。
+这两步是为了在沙箱 `.git` 被静默重置后把文件抢救回来，但副作用是：**你刚删掉的跟踪文件会被"救"回来**。
+
+**正确做法**（删跟踪文件时）：
+* 走完 `agent-sync.sh` 后 `git status` 确认删除已进提交；没有就再来一次，或
+* 直接 `git rm <file>` → `git commit` → `git push origin <branch>`（跳过自愈路径）；
+* 删完用 `git ls-tree -r origin/<branch> --name-only | grep <file>` 在**远端**核对，别只看本地。
+
+## 12. 账号策略 + 技能总部（v2.9.2，2026-09-17）
+
+**用户决定**：① 技能**只更新在 `arena/01a0ae7a-new`**（不开 PR 到 main）；② **以后都从这个分支装 skills**；
+③ 账号规则：**mqgg 的对话用 mqgg、shaohua 的对话用 shaohua**。
+
+**落地**：
+* `agent-install.sh` 的源改成候选列表（新源 `shaohuawen03-cyber/new@arena/01a0ae7a-new` 优先，
+  旧 `mqgg5630-cyber/git-pull-arena` 兜底），**探测全部候选、装最新版**（沙箱实测：探测 5 个候选后选中 v2.9.1，而不是旧源的 v2.8.1）；
+* `agent-handoff.sh` 从 remote URL 解析 owner，粘贴块里自动加
+  `.\auth.ps1 -Account shaohuawen03-cyber    # policy: push as the REPO OWNER's account`，
+  并在末尾打印 `account : <owner> (the repo owner - this clone is pinned to it)`；
+* 机器默认账号**保持用户常用的那个**（`gh auth switch` 只用于改默认，不用于切仓库）。
+
+**为什么按"仓库主"钉**：一台机器上 mqgg 与 shaohua 的克隆并存，谁都不能把对方的凭据顶掉；
+pin 只写本克隆的 local config，`-Unpin` 一键还原。合并两账号权限（Collaborator）是另一条路，
+用户明确选了"不动仓库权限、各用各号"。
