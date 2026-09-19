@@ -49,6 +49,22 @@ if ($handshakeNote -eq 'install-valorant-e-drive' -and $handshakeArena -eq 'awai
     }
 }
 
+if ($handshakeNote -eq 'monitor-valorant-install-e-drive' -and $handshakeArena -eq 'awaiting_check') {
+    Write-Output '== task: monitor VALORANT CN installation on E:'
+    if (-not (Test-Path -LiteralPath '.\code\valorant_wait.ps1')) {
+        Write-Output '[FAIL] task script missing: code\\valorant_wait.ps1'
+        $fail = 1
+    } else {
+        $taskOut = @(& .\code\valorant_wait.ps1 2>&1)
+        foreach ($line in $taskOut) { Write-Output $line }
+        $taskCode = $LASTEXITCODE
+        if ($taskCode -ne 0) {
+            Write-Output ('[FAIL] VALORANT monitor exited with code ' + $taskCode)
+            $fail = 1
+        }
+    }
+}
+
 # 1. the standard gate (.ps1 ASCII + branch guard + script consistency)
 #    (forward slashes on purpose: this also runs under the scheduled task,
 #     where bash may eat backslashes; Write-Output on purpose: the watcher
