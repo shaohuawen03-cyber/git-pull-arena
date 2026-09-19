@@ -1,4 +1,4 @@
 pptmaster-ok environment=windows host=LAPTOP-R77M5D6M
 deck_slides=12 checker_blocking=0 markers=ok powerpoint=na
 python=venv deps_core=ok deps_full=partial slides_svg=12 export=passed
-install_dir=E:\0github\git-sync\ppt-master
+install_dir=E:\0github\ppt-master

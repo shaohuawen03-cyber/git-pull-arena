@@ -1,9 +1,9 @@
 {
-  "round": 48,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "bridge roundtrip smoke test",
-  "arena_updated": "2026-09-19 11:10:48",
-  "local_updated": null
+    "round":  48,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "bridge roundtrip smoke test",
+    "arena_updated":  "2026-09-19 11:10:48",
+    "local_updated":  "2026-09-19 19:13:34"
 }

@@ -1,7 +1,7 @@
 {
   "schema": "ppt-master.svg-quality-report.v1",
   "stage": "final",
-  "target": "E:\\0github\\git-sync\\ppt-master\\projects\\umami-01a0aa00_20260916",
+  "target": "E:\\0github\\ppt-master\\projects\\umami-01a0aa00_20260919",
   "source_fingerprint": {
     "algorithm": "sha256",
     "digest": "5afef08a01815987cbea79af59bf2c3cd3d80fa3ccfa2ca045fa0cd58053d38b",
@@ -148,7 +148,7 @@
   "files": [
     {
       "file": "01_cover.svg",
-      "path": "E:\\0github\\git-sync\\ppt-master\\projects\\umami-01a0aa00_20260916\\svg_output\\01_cover.svg",
+      "path": "E:\\0github\\ppt-master\\projects\\umami-01a0aa00_20260919\\svg_output\\01_cover.svg",
       "exists": true,
       "errors": [],
       "warnings": [],
@@ -207,7 +207,7 @@
     },
     {
       "file": "02_toc.svg",
-      "path": "E:\\0github\\git-sync\\ppt-master\\projects\\umami-01a0aa00_20260916\\svg_output\\02_toc.svg",
+      "path": "E:\\0github\\ppt-master\\projects\\umami-01a0aa00_20260919\\svg_output\\02_toc.svg",
       "exists": true,
       "errors": [],
       "warnings": [],
@@ -266,7 +266,7 @@
     },
     {
       "file": "03_section_a.svg",
-      "path": "E:\\0github\\git-sync\\ppt-master\\projects\\umami-01a0aa00_20260916\\svg_output\\03_section_a.svg",
+      "path": "E:\\0github\\ppt-master\\projects\\umami-01a0aa00_20260919\\svg_output\\03_section_a.svg",
       "exists": true,
       "errors": [],
       "warnings": [],
@@ -325,7 +325,7 @@
     },
     {
       "file": "04_problem.svg",
-      "path": "E:\\0github\\git-sync\\ppt-master\\projects\\umami-01a0aa00_20260916\\svg_output\\04_problem.svg",
+      "path": "E:\\0github\\ppt-master\\projects\\umami-01a0aa00_20260919\\svg_output\\04_problem.svg",
       "exists": true,
       "errors": [],
       "warnings": [],
@@ -384,7 +384,7 @@
     },
     {
       "file": "05_data.svg",
-      "path": "E:\\0github\\git-sync\\ppt-master\\projects\\umami-01a0aa00_20260916\\svg_output\\05_data.svg",
+      "path": "E:\\0github\\ppt-master\\projects\\umami-01a0aa00_20260919\\svg_output\\05_data.svg",
       "exists": true,
       "errors": [],
       "warnings": [],
@@ -443,7 +443,7 @@
     },
     {
       "file": "06_features.svg",
-      "path": "E:\\0github\\git-sync\\ppt-master\\projects\\umami-01a0aa00_20260916\\svg_output\\06_features.svg",
+      "path": "E:\\0github\\ppt-master\\projects\\umami-01a0aa00_20260919\\svg_output\\06_features.svg",
       "exists": true,
       "errors": [],
       "warnings": [],
@@ -502,7 +502,7 @@
     },
     {
       "file": "07_models.svg",
-      "path": "E:\\0github\\git-sync\\ppt-master\\projects\\umami-01a0aa00_20260916\\svg_output\\07_models.svg",
+      "path": "E:\\0github\\ppt-master\\projects\\umami-01a0aa00_20260919\\svg_output\\07_models.svg",
       "exists": true,
       "errors": [],
       "warnings": [],
@@ -561,7 +561,7 @@
     },
     {
       "file": "08_eval.svg",
-      "path": "E:\\0github\\git-sync\\ppt-master\\projects\\umami-01a0aa00_20260916\\svg_output\\08_eval.svg",
+      "path": "E:\\0github\\ppt-master\\projects\\umami-01a0aa00_20260919\\svg_output\\08_eval.svg",
       "exists": true,
       "errors": [],
       "warnings": [],
@@ -620,7 +620,7 @@
     },
     {
       "file": "09_funnel.svg",
-      "path": "E:\\0github\\git-sync\\ppt-master\\projects\\umami-01a0aa00_20260916\\svg_output\\09_funnel.svg",
+      "path": "E:\\0github\\ppt-master\\projects\\umami-01a0aa00_20260919\\svg_output\\09_funnel.svg",
       "exists": true,
       "errors": [],
       "warnings": [],
@@ -679,7 +679,7 @@
     },
     {
       "file": "10_wetlab.svg",
-      "path": "E:\\0github\\git-sync\\ppt-master\\projects\\umami-01a0aa00_20260916\\svg_output\\10_wetlab.svg",
+      "path": "E:\\0github\\ppt-master\\projects\\umami-01a0aa00_20260919\\svg_output\\10_wetlab.svg",
       "exists": true,
       "errors": [],
       "warnings": [],
@@ -738,7 +738,7 @@
     },
     {
       "file": "11_reproduce.svg",
-      "path": "E:\\0github\\git-sync\\ppt-master\\projects\\umami-01a0aa00_20260916\\svg_output\\11_reproduce.svg",
+      "path": "E:\\0github\\ppt-master\\projects\\umami-01a0aa00_20260919\\svg_output\\11_reproduce.svg",
       "exists": true,
       "errors": [],
       "warnings": [],
@@ -797,7 +797,7 @@
     },
     {
       "file": "12_ending.svg",
-      "path": "E:\\0github\\git-sync\\ppt-master\\projects\\umami-01a0aa00_20260916\\svg_output\\12_ending.svg",
+      "path": "E:\\0github\\ppt-master\\projects\\umami-01a0aa00_20260919\\svg_output\\12_ending.svg",
       "exists": true,
       "errors": [],
       "warnings": [],
